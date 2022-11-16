@@ -10,6 +10,7 @@ const Home = () => {
   const [tuits, setTuits] = useState([]);
   const [tuit, setTuit] = useState('');
   const userId = uid;
+  
   const findTuits = () => {
     if(uid) {
       return service.findTuitByUser(uid)
