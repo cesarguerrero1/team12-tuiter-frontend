@@ -25,7 +25,7 @@ function WhatsHappening() {
             <h4 className="fs-6 fw-lighter">{wh.likes} likes</h4>
            </div>
            <div>
-            <img src={`../images/${wh['user-logo']}`}
+            <img alt="Whats Happening" src={`../images/${wh['user-logo']}`}
                  className="ttr-rounded-15px ttr-user-logo"/>
            </div>
           </div>

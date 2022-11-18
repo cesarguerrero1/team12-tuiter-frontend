@@ -1,7 +1,7 @@
 import React from "react";
 import Navigation from "../navigation";
 import WhatsHappening from "../whats-happening";
-import {BrowserRouter, Routes, Route, HashRouter} from "react-router-dom";
+import {BrowserRouter, Routes, Route} from "react-router-dom";
 import Home from "../home";
 import Bookmarks from "../bookmarks";
 import Profile from "../profile";
@@ -14,13 +14,19 @@ import Lists from "../lists";
 import More from "../more";
 import {Login} from "../profile/login";
 
+//New functionality
+import Admin from "../admin/index.js";
+
 function Tuiter () {
   return(
-    <HashRouter>
+    <BrowserRouter>
       <div className="container">
         <div className="ttr-tuiter">
           <div className="ttr-left-column">
-            <Navigation/>
+            <Routes>
+              <Route path="/*" element={<Navigation/>}/>
+              <Route path="/admin/*" element={<div>Admin Left Side</div>}/>
+            </Routes>
           </div>
           <div className="ttr-center-column">
             <Routes>
@@ -38,14 +44,18 @@ function Tuiter () {
               <Route path="/profile" element={<Profile/>}/>
               <Route path="/profile/edit" element={<EditProfile/>}/>
               <Route path="/more" element={<More/>}/>
+              <Route path="/admin" element={<Admin/>}/>
             </Routes>
           </div>
           <div className="ttr-right-column">
-            <WhatsHappening/>
+              <Routes>
+                <Route path="/*" element={<WhatsHappening/>}/>
+                <Route path="/admin/*" element={<div>Admin Right Side</div>}/>
+              </Routes>
           </div>
         </div>
       </div>
-    </HashRouter>
+    </BrowserRouter>
   );
 }
 export default Tuiter;
