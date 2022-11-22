@@ -20,7 +20,10 @@ function Tuiter () {
       <div className="container">
         <div className="ttr-tuiter">
           <div className="ttr-left-column">
-            <Navigation/>
+            <Routes>
+              <Route path="/*" element={<Navigation/>}/>
+              <Route path="/admin/*" element={<div>Left Side Admin Page</div>} />
+            </Routes>
           </div>
           <div className="ttr-center-column">
             <Routes>
@@ -38,10 +41,14 @@ function Tuiter () {
               <Route path="/profile" element={<Profile/>}/>
               <Route path="/profile/edit" element={<EditProfile/>}/>
               <Route path="/more" element={<More/>}/>
+              <Route path="/admin/*" element={<div>Center Admin Page</div>} />
             </Routes>
           </div>
           <div className="ttr-right-column">
-            <WhatsHappening/>
+            <Routes>
+              <Route path="/*" element={<WhatsHappening/>}/>
+              <Route path="/admin/*" element={<div>Right Side Admin Page</div>} />
+            </Routes>
           </div>
         </div>
       </div>
