@@ -1,4 +1,3 @@
-import {Link, useNavigate} from "react-router-dom";
 import {useEffect, useState} from "react";
 import * as service from "../../services/users-service";
 import React from "react";
@@ -12,28 +11,15 @@ export const Login = () => {
   const [loginUser, setLoginUser] = useState({});
   // const navigate = useNavigate()
 
-  const uuu = [
-    {username: 'ellen_ripley', email: 'ellen_ripley', password: 'ellen_ripley', _id: '123'},
-    {username: 'sarah', email: 'ellen_ripley', password: 'ellen_ripley', _id: '234'}
-  ]
-
-  const deleteUser = (uid) =>
-    service.deleteUser(uid)
-      .then(findAllUsers)
-  const findAllUsers = () =>
-    service.findAllUsers()
-      .then(users => {
-        setExistingUsers(users)
-      })
-  const register = () =>
-    service.createUser(newUser)
-      .then(findAllUsers);
-  const login = () =>
-    service.findUserByCredentials(loginUser)
-      .then((user) => {
+  const deleteUser = (uid) => service.deleteUser(uid).then(findAllUsers)
+  const findAllUsers = () => service.findAllUsers().then(users => { setExistingUsers(users)})
+  const register = () => service.createUser(newUser).then(findAllUsers);
+  const login = () => service.findUserByCredentials(loginUser).then((user) => {
         //navigate(`/home/${user._id}`)
-      });
+  });
+
   useEffect(findAllUsers, []);
+
   return (
     <div>
       <h1>Register</h1>
