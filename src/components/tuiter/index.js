@@ -14,6 +14,11 @@ import Lists from "../lists";
 import More from "../more";
 import {Login} from "../profile/login";
 
+//We are adding in our new components
+import Admin from "../admin";
+import AdminLeftSide from "../admin/admin-left-side.js";
+import AdminRightSide from "../admin/admin-right-side.js";
+
 function Tuiter () {
   return(
     <BrowserRouter>
@@ -22,7 +27,7 @@ function Tuiter () {
           <div className="ttr-left-column">
             <Routes>
               <Route path="/*" element={<Navigation/>}/>
-              <Route path="/admin/*" element={<div>Left Side Admin Page</div>} />
+              <Route path="/admin/*" element={<AdminLeftSide/>} />
             </Routes>
           </div>
           <div className="ttr-center-column">
@@ -41,13 +46,13 @@ function Tuiter () {
               <Route path="/profile" element={<Profile/>}/>
               <Route path="/profile/edit" element={<EditProfile/>}/>
               <Route path="/more" element={<More/>}/>
-              <Route path="/admin/*" element={<div>Center Admin Page</div>} />
+              <Route path="/admin/*" element={<Admin/>} />
             </Routes>
           </div>
           <div className="ttr-right-column">
             <Routes>
               <Route path="/*" element={<WhatsHappening/>}/>
-              <Route path="/admin/*" element={<div>Right Side Admin Page</div>} />
+              <Route path="/admin/*" element={<AdminRightSide/>} />
             </Routes>
           </div>
         </div>
