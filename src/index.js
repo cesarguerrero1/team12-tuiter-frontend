@@ -4,6 +4,10 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+//Import Bootstrap and FontAwesome
+import "bootstrap/dist/css/bootstrap.min.css"
+import 'fontawesome-free/css/all.min.css'
+
 ReactDOM.render(
   <React.StrictMode>
     <App />
