@@ -30,6 +30,9 @@ import usersReducer from "../../reducers/users-reducer.js"
 import {configureStore} from "@reduxjs/toolkit"
 import {Provider} from "react-redux"
 
+//import CSS
+import "./index.css"
+
 const store = configureStore({
     reducer: {
       users: usersReducer

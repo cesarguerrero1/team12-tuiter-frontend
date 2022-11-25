@@ -22,7 +22,6 @@ Custom CSS File
     border-radius: 15px;
 }
 
-
 .ttr-width-50px{
     width:50px;
 }
@@ -39,15 +38,13 @@ Custom CSS File
     top: 75px;
 }
 
-.ttr-label{
-    color: red;
-}
-
-.ttr-navigation-i {
+.ttr-navigation a > i {
     width: 40px;
+    text-align: center;
 }
 
-.ttr-navigation-li, .ttr-navigation-a {
+.ttr-navigation li,
+.ttr-navigation a {
     border: none;
     text-decoration: none;
     color: black;
@@ -63,14 +60,6 @@ Custom CSS File
 
 .ttr-width-150px{
     width:150px;
-}
-
-.ttr-edit-profile{
-    color:red;
-}
-
-.ttr-profile{
-    color:red;
 }
 
 .ttr-tuiter {
