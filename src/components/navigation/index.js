@@ -13,8 +13,7 @@ function Navigation() {
     {label: 'Bookmarks', icon: 'fa-bookmark', path: '/bookmarks'},
     {label: 'Lists', icon: 'fa-list', path: '/lists'},
     {label: 'Profile', icon: 'fa-user', path: '/profile'},
-    {label: 'Movies', icon: 'fa-user', path: '/movies'},
-    {label: 'More', icon: 'fa-circle-ellipsis', path: '/more'},
+    {label: 'More', icon: 'fa-ellipsis-h', path: '/more'},
     {label: 'Login', icon: 'fa-user', path: '/login'},
   ];
   return (
@@ -35,8 +34,7 @@ function Navigation() {
           })
         }
       </div>
-      <a href="#" className="mt-3 btn btn-lg btn-primary rounded-pill w-100 fw-bold text-white">
-        Tuit</a>
+      <button className="mt-3 btn btn-lg btn-primary rounded-pill w-100 fw-bold text-white">Tuit</button>
     </div>
   );
 };
