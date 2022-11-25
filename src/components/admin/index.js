@@ -14,6 +14,9 @@ import AdminRightSide from "./right-pages/admin-right-side";
 import LoginPage from "./center-pages/login.js"
 import HomePage from "./center-pages/home.js";
 
+//CSS Import
+import "./index.css"
+
 /**
  * The Admin function is used to handle routing and what content to render when someone is attempting to access the admin page
  * @returns HTML DIV - The div contains all of the data we want to show on the website
@@ -23,13 +26,11 @@ function AdminRouter() {
         <div className="container">
             <div className="row my-2">
                 <AdminLeftSide />
-                <div className="col">
-                    <Routes>
-                        <Route index element={<LoginPage />} />
-                        <Route path="/login" element={<LoginPage />} />
-                        <Route path="/home/*" element={<HomePage />} />
-                    </Routes>
-                </div>
+                <Routes>
+                    <Route index element={<LoginPage />} />
+                    <Route path="/login" element={<LoginPage />} />
+                    <Route path="/home/*" element={<HomePage />} />
+                </Routes>
                 <AdminRightSide/>
             </div>
         </div>

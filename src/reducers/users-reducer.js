@@ -10,8 +10,9 @@ import {isLoggedInThunk, findAllUsersThunk, registerThunk, loginThunk, logoutThu
 
 //As a note, our user will have the following pertinent properties: username, password, email, accountType, isBlocked, isAdmin
 const initialState = {
+    loginAttemptFailed: false,
     currentUser: null,
-    allUsers: []
+    allUsers: [],
 }
 
 const userSlice = createSlice({
@@ -24,6 +25,7 @@ const userSlice = createSlice({
     extraReducers:{
         [registerThunk.fulfilled]: (state, action) => {
             state.allUsers.push(action.payload)
+            return
         },
         [registerThunk.rejected]: (state, action) => {
             return
@@ -31,13 +33,17 @@ const userSlice = createSlice({
 
         [loginThunk.fulfilled]: (state, action) => {
             state.currentUser = action.payload
+            state.loginAttemptFailed = false;
+            return
         },
         [loginThunk.rejected]: (state, action) => {
+            state.loginAttemptFailed = true;
             return
         },
 
         [logoutThunk.fulfilled]: (state, action) => {
             state.currentUser = null
+            return
         },
         [logoutThunk.rejected]: (state, action) => {
             return
@@ -45,13 +51,16 @@ const userSlice = createSlice({
 
         [isLoggedInThunk.fulfilled]: (state, action) => {
             state.currentUser = action.payload
+            return
         },
         [isLoggedInThunk.rejected]: (state, action) => {
             state.currentUser = null;
+            return
         },
 
         [findAllUsersThunk.fulfilled]: (state, action) => {
             state.allUsers = action.payload
+            return
         },
         [findAllUsersThunk.rejected]: (state, action) => {
             return
@@ -62,6 +71,7 @@ const userSlice = createSlice({
             state.allUsers = state.allUsers.filter((user) => {
                 return user._id !== action.payload
             })
+            return
         },
         [deleteUserThunk.rejected]: (state, action) => {
             return;
@@ -74,6 +84,7 @@ const userSlice = createSlice({
             })
 
             state.allUsers[index] = action.payload
+            return
         },
         [updateUserThunk.rejected]: (state, action) => {
             return
