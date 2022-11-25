@@ -8,7 +8,7 @@ Please note that this code was taken from Assignment 3
 
 import { UserList } from "../components/profile/user-list.js";
 import { screen, render } from "@testing-library/react";
-import { HashRouter } from "react-router-dom";
+import { BrowserRouter } from "react-router-dom";
 import { findAllUsers } from "../services/users-service.js";
 import axios from "axios";
 
@@ -22,9 +22,9 @@ const MOCKED_USERS = [
 test('user list renders static user array', () => {
     render(
         //Rend the UserList component and send it a mock array of users
-        <HashRouter>
+        <BrowserRouter>
             <UserList users={MOCKED_USERS} />
-        </HashRouter>
+        </BrowserRouter>
     );
     //Grab the screen 
     const linkElement = screen.getByText(/ellen_ripley/i);
@@ -40,9 +40,9 @@ test('user list renders mocked', async () => {
   const users = response.users;
 
   render(
-    <HashRouter>
+    <BrowserRouter>
       <UserList users={users} />
-    </HashRouter>);
+    </BrowserRouter>);
 
   const user = screen.getByText(/ellen_ripley/i);
   expect(user).toBeInTheDocument();

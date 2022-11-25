@@ -3,7 +3,7 @@ import {useLocation, Link} from "react-router-dom";
 
 function Navigation() {
   const {pathname} = useLocation();
-  // console.log(location.pathname);
+  
   const links = [
     {label: 'Tuiter', icon: 'fa-square-t', path: '/tuiter'},
     {label: 'Home', icon: 'fa-home', path: '/home'},

@@ -12,6 +12,7 @@ import {useDispatch, useSelector} from "react-redux";
 //Import our Thunk
 import { findAllUsersThunk, registerThunk, loginThunk} from "../../services/users-thunk";
 
+//Component Imports
 import {UserList} from "./user-list";
 
 function Login(){

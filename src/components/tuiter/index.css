@@ -5,6 +5,32 @@ Team 12 - CS5500 Final
 
 Custom CSS File
 */
+
+.ttr-tuits .ttr-tuit-avatar-logo {
+    width: 48px;
+}
+
+.ttr-tuits .ttr-tuit-image-overlay {
+    left: 10px;
+}
+
+.ttr-tuits .ttr-responsive-video::after {
+    display: block;
+    content: "";
+    padding-top: 56.25%;
+}
+
+.ttr-whats-happening
+.ttr-whats-happening-tuit
+.ttr-user-logo {
+    width: 68px;
+}
+
+.ttr-whats-happening .ttr-search .fas.fa-search {
+    top: 17px;
+    left: 17px;
+}
+
 .ttr-width-100-pc {
     width: 100%;
 }

@@ -60,9 +60,7 @@ const userSlice = createSlice({
         [deleteUserThunk.fulfilled]: (state, action) => {
             //Recall that filter will mae a new array with ONLY the values that pass your boolean test
             state.allUsers = state.allUsers.filter((user) => {
-                if(user._id != action.payload){
-                    return user;
-                }
+                return user._id !== action.payload
             })
         },
         [deleteUserThunk.rejected]: (state, action) => {
@@ -71,10 +69,8 @@ const userSlice = createSlice({
 
         [updateUserThunk.fulfilled]: (state, action) => {
             //Recall that we want to look for the index and then update that index
-            state.allUsers.findIndex((user) => {
-                if(user._id = action.payload._uid){
-                    return user
-                }
+            const index = state.allUsers.findIndex((user) => {
+                return user._id === action.payload._uid
             })
 
             state.allUsers[index] = action.payload
