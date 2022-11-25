@@ -10,10 +10,12 @@ File: This file handles the right-side of the admin page
 import React from "react";
 import { Routes, Route } from "react-router-dom";
 
+import AdminStats from "./index.js"
+
 function AdminRightSide(){
     return(
         <Routes>
-            <Route path="/home" element={<div>This is going to handle miscellaneous data we want to store on the right</div>}/>
+            <Route path="/home/*" element={<AdminStats />} />
         </Routes>
     )
 }

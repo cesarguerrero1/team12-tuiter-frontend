@@ -9,11 +9,12 @@ File: This file handles the left-side of the admin page
 
 import React from "react";
 import { Routes, Route } from "react-router-dom";
+import AdminNavbar from "./index.js";
 
 function AdminLeftSide(){
     return(
         <Routes>
-            <Route path="/home" element={<div>This is going to handle the menu</div>}/>
+            <Route path="/home/*" element={<AdminNavbar />} />
         </Routes>
     )
 }

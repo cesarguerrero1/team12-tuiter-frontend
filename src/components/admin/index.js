@@ -9,20 +9,31 @@ File: Base Routing file for all of the admin pages
 
 import React from "react";
 import { Routes, Route } from "react-router-dom";
+import AdminLeftSide from "./left-pages/admin-left-side";
+import AdminRightSide from "./right-pages/admin-right-side";
+import LoginPage from "./center-pages/login.js"
+import HomePage from "./center-pages/home.js";
 
 /**
  * The Admin function is used to handle routing and what content to render when someone is attempting to access the admin page
  * @returns HTML DIV - The div contains all of the data we want to show on the website
  */
-function Admin() {
-
+function AdminRouter() {
     return (
-        <Routes>
-            <Route index element={<div>Login Page</div>} />
-            <Route path="/login" element={<div>Login Page</div>} />
-            <Route path="/home" element={<div>Home Page</div>} />
-        </Routes>
+        <div className="container">
+            <div className="row my-2">
+                <AdminLeftSide />
+                <div className="col">
+                    <Routes>
+                        <Route index element={<LoginPage />} />
+                        <Route path="/login" element={<LoginPage />} />
+                        <Route path="/home/*" element={<HomePage />} />
+                    </Routes>
+                </div>
+                <AdminRightSide/>
+            </div>
+        </div>
     )
 }
 
-export default Admin
+export default AdminRouter
