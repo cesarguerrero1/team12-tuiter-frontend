@@ -4,7 +4,7 @@ import * as service from "../../services/users-service";
 import React from "react";
 import {UserList} from "./user-list";
 
-export const Login = () => {
+function Login(){
   const [existingUsers, setExistingUsers] = useState([]);
     // {username: 'user1', email: 'user1', password: 'user1', _id: '123'}
   // ]);
@@ -70,3 +70,5 @@ export const Login = () => {
     </div>
   );
 };
+
+export default Login;

@@ -1,5 +1,4 @@
 import React from "react";
-import "./navigation.css";
 import {useLocation, Link} from "react-router-dom";
 
 function Navigation() {
