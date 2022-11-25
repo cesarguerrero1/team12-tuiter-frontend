@@ -1,0 +1,253 @@
+/*
+Cesar Guerrero
+Team 12 - CS5500 Final
+11/24/22
+
+Custom CSS File
+*/
+
+.ttr-tuits .ttr-tuit-avatar-logo {
+    width: 48px;
+}
+
+.ttr-tuits .ttr-tuit-image-overlay {
+    left: 10px;
+}
+
+.ttr-tuits .ttr-responsive-video::after {
+    display: block;
+    content: "";
+    padding-top: 56.25%;
+}
+
+.ttr-whats-happening
+.ttr-whats-happening-tuit
+.ttr-user-logo {
+    width: 68px;
+}
+
+.ttr-whats-happening .ttr-search .fas.fa-search {
+    top: 17px;
+    left: 17px;
+}
+
+.ttr-width-100-pc {
+    width: 100%;
+}
+
+.ttr-height-100-pc {
+    height: 100%;
+}
+
+.ttr-height-50-pc {
+    height: 50%;
+}
+
+
+.ttr-rounded-15px {
+    border-radius: 15px;
+}
+
+.ttr-width-50px{
+    width:50px;
+}
+
+.ttr-font-size-150pc{
+    font-size:1.5em
+}
+
+.left-0 {
+    left: 0px;
+}
+
+.ttr-top-75px {
+    top: 75px;
+}
+
+.ttr-navigation a > i {
+    width: 40px;
+    text-align: center;
+}
+
+.ttr-navigation li,
+.ttr-navigation a {
+    border: none;
+    text-decoration: none;
+    color: black;
+}
+
+.ttr-z-index-1{
+    z-index: 1;
+}
+
+.ttr-top-40px{
+    top: 40px
+}
+
+.ttr-width-150px{
+    width:150px;
+}
+
+.ttr-tuiter {
+    display: flex;
+    margin: auto;
+}
+.ttr-tuiter .ttr-left-column {
+    padding: 10px;
+}
+.ttr-tuiter .ttr-center-column {
+    padding: 10px;
+}
+.ttr-tuiter .ttr-right-column {
+    padding: 10px;
+}
+
+.ttr-navigation a > i {
+    width: 40px;
+    text-align: center;
+}
+
+.ttr-navigation li,
+.ttr-navigation a {
+    border: none;
+    text-decoration: none;
+    color: black;
+}
+
+.ttr-bookmarks {
+    display: flex;
+    margin: auto;
+}
+.ttr-bookmarks .ttr-left-column {
+    padding: 10px;
+}
+.ttr-bookmarks .ttr-center-column {
+    padding: 10px;
+}
+.ttr-bookmarks .ttr-right-column {
+    padding: 10px;
+}
+
+@media only screen and (min-width: 1300px) {
+    .ttr-bookmarks     { width: 1225px; }
+    .ttr-bookmarks
+    .ttr-left-column   { width: 275px; }
+    .ttr-bookmarks
+    .ttr-center-column { width: 600px; }
+    .ttr-bookmarks
+    .ttr-right-column  { width: 350px; }
+}
+@media only screen and
+(min-width: 1100px) and (max-width: 1300px) {
+    .ttr-bookmarks     { width: 1038px;  }
+    .ttr-bookmarks
+    .ttr-left-column   { width: 88px; }
+    .ttr-bookmarks
+    .ttr-center-column { width: 600px; }
+    .ttr-bookmarks
+    .ttr-right-column  { width: 350px; }
+    .ttr-navigation > li
+    { text-align: center !important; }
+    .ttr-navigation
+    .ttr-label { display: none; }
+    .ttr-navigation
+    .ttr-tuit-button { width: 50px; }
+}
+
+@media only screen and
+(min-width: 1000px) and
+(max-width: 1100px) {
+    .ttr-bookmarks     { width: 978px; }
+    .ttr-bookmarks
+    .ttr-left-column   { width: 88px; }
+    .ttr-bookmarks
+    .ttr-center-column { width: 600px; }
+    .ttr-bookmarks
+    .ttr-right-column  { width: 290px; }
+    .ttr-navigation > li
+    { text-align: center !important; }
+    .ttr-navigation
+    .ttr-label { display: none; }
+    .ttr-navigation
+    .ttr-tuit-button { width: 50px; }
+}
+
+@media only screen and (max-width: 1000px) {
+    .ttr-bookmarks     { max-width: 688px; }
+    .ttr-bookmarks
+    .ttr-left-column   { width: 88px; }
+    .ttr-bookmarks
+    .ttr-center-column { width: 600px; }
+    .ttr-bookmarks
+    .ttr-right-column  { display: none; }
+    .ttr-navigation > li
+    { text-align: center !important; }
+    .ttr-navigation
+    .ttr-label { display: none; }
+    .ttr-navigation
+    .ttr-tuit-button { width: 50px; }
+}
+
+
+
+@media only screen and (min-width: 1300px) {
+    .ttr-tuiter     { width: 1225px; }
+    .ttr-tuiter
+    .ttr-left-column   { width: 275px; }
+    .ttr-tuiter
+    .ttr-center-column { width: 600px; }
+    .ttr-tuiter
+    .ttr-right-column  { width: 350px; }
+}
+@media only screen and
+(min-width: 1100px) and (max-width: 1300px) {
+    .ttr-tuiter     { width: 1038px;  }
+    .ttr-tuiter
+    .ttr-left-column   { width: 88px; }
+    .ttr-tuiter
+    .ttr-center-column { width: 600px; }
+    .ttr-tuiter
+    .ttr-right-column  { width: 350px; }
+    .ttr-navigation > li
+    { text-align: center !important; }
+    .ttr-navigation
+    .ttr-label { display: none; }
+    .ttr-navigation
+    .ttr-tuit-button { width: 50px; }
+}
+
+@media only screen and
+(min-width: 1000px) and
+(max-width: 1100px) {
+    .ttr-tuiter     { width: 978px; }
+    .ttr-tuiter
+    .ttr-left-column   { width: 88px; }
+    .ttr-tuiter
+    .ttr-center-column { width: 600px; }
+    .ttr-tuiter
+    .ttr-right-column  { width: 290px; }
+    .ttr-navigation > li
+    { text-align: center !important; }
+    .ttr-navigation
+    .ttr-label { display: none; }
+    .ttr-navigation
+    .ttr-tuit-button { width: 50px; }
+}
+
+@media only screen and (max-width: 1000px) {
+    .ttr-tuiter     { max-width: 688px; }
+    .ttr-tuiter
+    .ttr-left-column   { width: 88px; }
+    .ttr-tuiter
+    .ttr-center-column { width: 600px; }
+    .ttr-tuiter
+    .ttr-right-column  { display: none; }
+    .ttr-navigation > li
+    { text-align: center !important; }
+    .ttr-navigation
+    .ttr-label { display: none; }
+    .ttr-navigation
+    .ttr-tuit-button { width: 50px; }
+}
+
+

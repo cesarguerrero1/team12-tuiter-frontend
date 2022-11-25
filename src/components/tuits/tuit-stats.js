@@ -1,9 +1,8 @@
 import React from "react";
 
-const TuitStats = ({tuit}) => {
-
-    return (
-      <div className="row mt-2">
+function TuitStats(tuit){
+  return (
+    <div className="row mt-2">
         <div className="col">
           <i className="far fa-message me-1"></i>
           {tuit.stats.replies}
@@ -19,8 +18,8 @@ const TuitStats = ({tuit}) => {
         <div className="col">
           <i className="far fa-inbox-out"></i>
         </div>
-      </div>
-    );
+    </div>
+  );
 }
 
 export default TuitStats
