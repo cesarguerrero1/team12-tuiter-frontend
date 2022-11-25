@@ -11,6 +11,7 @@ import {isLoggedInThunk, findAllUsersThunk, registerThunk, loginThunk, logoutThu
 //As a note, our user will have the following pertinent properties: username, password, email, accountType, isBlocked, isAdmin
 const initialState = {
     loginAttemptFailed: false,
+    isAdmin: false,
     currentUser: null,
     allUsers: [],
 }
@@ -34,15 +35,22 @@ const userSlice = createSlice({
         [loginThunk.fulfilled]: (state, action) => {
             state.currentUser = action.payload
             state.loginAttemptFailed = false;
+            if(state.currentUser.isAdmin === true){
+                state.isAdmin = true
+            }
             return
         },
         [loginThunk.rejected]: (state, action) => {
+            state.currentUser = null
             state.loginAttemptFailed = true;
+            state.isAdmin = false;
             return
         },
 
         [logoutThunk.fulfilled]: (state, action) => {
             state.currentUser = null
+            state.loginAttemptFailed = false;
+            state.isAdmin = false;
             return
         },
         [logoutThunk.rejected]: (state, action) => {
