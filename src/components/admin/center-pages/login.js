@@ -47,8 +47,8 @@ function LoginPage(){
                         <input placeholder="Please enter your password" type="password" className="form-control" id="password" onChange={(event) => {setPassword(event.target.value)}}/>
                     </div>
                     <div id="fse-error-messages" className="text-danger fw-bold text-center m-3">{errorMessage}</div>
-                    <div className="w-100 m-auto text-center">
-                        <button className='btn btn-primary w-25' onClick={loginClickHandler}>Login</button>
+                    <div>
+                        <button className='btn fse-login-button' onClick={loginClickHandler}>Login</button>
                     </div>
                 </div>
             </div>

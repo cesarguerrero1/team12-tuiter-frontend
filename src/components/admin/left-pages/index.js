@@ -6,10 +6,23 @@ Team 12 - Final Project
 
 */
 
-function AdminNavbar(){
+import React from "react";
+import {Link} from "react-router-dom";
+
+function AdminNavbar({showModal}){
+
     return(
-        <div className="col-2 col-md-2 col-lg-1 col-xl-2">
-            Navbar goes here
+        <div className="col-3 col-xl-2">
+           <div className = "fse-navbar-border">
+                <div>
+                    <Link to="./users" className="fse-navbar-links"><i className="" /> Users</Link>
+                    <Link to="./tuits" className="fse-navbar-links"><i className="" /> Tuits</Link>
+                </div>
+                <div>
+                    <button id="userModalButton" className="btn fse-navbar-button" onClick={(event) => {showModal(event)}}>Add User</button>
+                    <button id="tuitModalButton" className="btn fse-navbar-button" onClick={(event) => {showModal(event)}}>Add Tuit</button>
+                </div>
+           </div>
         </div>
     )
 }
