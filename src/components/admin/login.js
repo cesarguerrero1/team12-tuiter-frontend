@@ -9,7 +9,7 @@ Team 12 - Final Project
 import React, {useState} from "react";
 import {useNavigate} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
-import { loginThunk } from "../../../services/users-thunk";
+import { loginThunk } from "../../services/users-thunk";
 
 function LoginPage(){
 

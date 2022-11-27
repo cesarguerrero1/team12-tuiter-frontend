@@ -11,7 +11,7 @@ import React, { useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 import AdminLeftSide from "./left-pages/admin-left-side";
 import AdminRightSide from "./right-pages/admin-right-side";
-import LoginPage from "./center-pages/login.js"
+import LoginPage from "./login.js"
 import HomePage from "./center-pages/home.js";
 
 //CSS Import
@@ -62,12 +62,12 @@ function AdminRouter() {
         //Grab Modals
         userModal = document.getElementById('userModal');
         tuitModal = document.getElementById('tuitModal');
-        console.log(userModal);
 
         //Grab Buttons
         userModalButton = document.getElementById('userModalButton');
         tuitModalButton = document.getElementById('tuitModalButton');
-
+        
+        console.log("This is running again!");
     })
 
     return (
