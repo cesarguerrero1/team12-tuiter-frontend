@@ -1,3 +1,11 @@
+/*
+To take advantage of Redux, we will need to use and implement the following:
+1. useEffect
+2. useDispatch
+3. useSelector
+4. Thunk Files
+*/
+
 import React from "react";
 import Tuits from "../tuits";
 import * as service from "../../services/tuits-service";
