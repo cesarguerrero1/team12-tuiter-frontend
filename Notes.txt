@@ -1,0 +1,23 @@
+Cesar Guerrero
+11/8/22
+
+Packages we need to make sure are present:
+1. @reduxjs/toolkit
+2. axios
+3. bootstrap
+4. bootswatch
+5. fontawesome-free
+6. react
+7. react-dom
+8. react-redux
+9. react-router
+10. react-router-dom
+11. redux
+
+
+At a high level we will need to steadily work to do the following:
+1. Add Redux! Managing state is so much easier with Redux
+2. Implement THUNK services to handle the interaction between the server and our reducers
+3. Refactor the base code to take advantage of Redux as our admin portal will be an extension of the base application
+4. Create an authentication service as being an admin and handling CRUD operations needs to be a secure idea
+5. Remove ALL of the public files except for index.html; Our entire application should be run from JXS files not vanilla HTML/JS/CSS
