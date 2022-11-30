@@ -4,7 +4,6 @@ import {useLocation, Link} from "react-router-dom";
 
 function Navigation() {
   const {pathname} = useLocation();
-  // console.log(location.pathname);
   const links = [
     {label: 'Tuiter', icon: 'fa-square-t', path: '/tuiter'},
     {label: 'Home', icon: 'fa-home', path: '/home'},
@@ -36,8 +35,7 @@ function Navigation() {
           })
         }
       </div>
-      <a href="#" className="mt-3 btn btn-lg btn-primary rounded-pill w-100 fw-bold text-white">
-        Tuit</a>
+      <a href="#" className="mt-3 btn btn-lg btn-primary rounded-pill w-100 fw-bold text-white">Tuit</a>
     </div>
   );
 };
