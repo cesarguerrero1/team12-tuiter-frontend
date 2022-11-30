@@ -20,3 +20,4 @@ At a high level we will need to steadily work to do the following:
 2. Implement THUNK services to handle the interaction between the server and our reducers
 3. Refactor the base code to take advantage of Redux as our admin portal will be an extension of the base application
 4. Create an authentication service as being an admin and handling CRUD operations needs to be a secure idea
+5. Remove ALL of the public files except for index.html; Our entire application should be run from JXS files not vanilla HTML/JS/CSS
