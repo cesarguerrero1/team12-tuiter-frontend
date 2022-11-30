@@ -1,6 +1,13 @@
+/*
+TODO:
+1. Add in our custom CSS sheet
+2. Handle the implementation of Redux (Reducers, Store, Provider)
+*/
+
 import React from "react";
 import Navigation from "../navigation";
 import WhatsHappening from "../whats-happening";
+//This use of HashRouter vs BrowserRouter needs to be fixed. It is kind of a pain
 import {BrowserRouter, Routes, Route, HashRouter} from "react-router-dom";
 import Home from "../home";
 import Bookmarks from "../bookmarks";
@@ -15,6 +22,7 @@ import More from "../more";
 import {Login} from "../profile/login";
 
 function Tuiter () {
+  //Refactor the following routing code to handle a User Interface and the Admin Interface along with a centralized state management system
   return(
     <HashRouter>
       <div className="container">

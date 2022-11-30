@@ -1,5 +1,5 @@
 import axios from "axios";
-//NOTE: THIS NEEDS TO CHANGE TO OUR HEROKU SERVER
+//We need to change this URL with our Heroku URL
 const BASE_URL = "http://my-node-express-project-env.eba-hxq4pgvm.us-east-1.elasticbeanstalk.com"
 const TUITS_API = `${BASE_URL}/api/tuits`;
 const USERS_API = `${BASE_URL}/api/users`;
