@@ -4,6 +4,12 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+/*We will need to consolidate all of our CSS files as well as import the following libraries:
+1. Bootstrap
+2. FontAwesome
+*/
+
+
 ReactDOM.render(
   <React.StrictMode>
     <App />
