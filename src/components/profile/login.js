@@ -1,15 +1,18 @@
 /*
 Cesar Guerrero
 12/4/22
-CS5500 - After meeting with the professor we are going back and retroactively just making sure all of our pull requests are lined up.
+CS5500 - Final 
+
+After meeting with the professor we are going back and retroactively just making sure all of our pull requests are lined up.
 */
 
+import {Link, useNavigate} from "react-router-dom";
 import {useEffect, useState} from "react";
 import * as userService from "../../services/users-service";
 import React from "react";
 import {UserList} from "./user-list";
 
-export const Login = () => {
+function Login(){
   const [existingUsers, setExistingUsers] = useState([]);
 
   const [newUser, setNewUser] = useState({});
@@ -60,3 +63,5 @@ export const Login = () => {
     </div>
   );
 };
+
+export default Login;
