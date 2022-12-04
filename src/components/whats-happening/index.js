@@ -1,6 +1,5 @@
 import React from "react";
 import whatsHappening from "./whats-happening-data.json";
-import './whats-happening.css'
 
 function WhatsHappening() {
   return (

@@ -10,11 +10,13 @@ To take advantage of Redux, we will need to use and implement the following:
 4. Thunk Files
 */
 
-import React from "react";
+//React
+import React, {useEffect, useState} from "react";
+import {useParams} from "react-router-dom";
+
+//Other
 import Tuits from "../tuits";
 import * as tuitsService from "../../services/tuits-service";
-import {useEffect, useState} from "react";
-import {useParams} from "react-router-dom";
 
 const Home = () => {
   const {uid} = useParams();
@@ -29,13 +31,13 @@ const Home = () => {
       return tuitsService.findAllTuits().then(tuits => setTuits(tuits))
     }
   }
+  
+  const createTuit = () => tuitsService.createTuit(userId, {tuit}).then(findTuits)
+  const deleteTuit = (tid) => tuitsService.deleteTuit(tid).then(findTuits)
 
   useEffect(() => {
     findTuits()
   }, []);
-
-  const createTuit = () => tuitsService.createTuit(userId, {tuit}).then(findTuits)
-  const deleteTuit = (tid) => tuitsService.deleteTuit(tid).then(findTuits)
 
   return(
     <div className="ttr-home">

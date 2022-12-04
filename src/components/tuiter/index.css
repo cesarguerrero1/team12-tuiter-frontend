@@ -1,9 +1,35 @@
 /*
 Cesar Guerrero
 Team 12 - CS5500 Final
-11/24/22
+12/4/22
 Custom CSS File
 */
+
+.ttr-tuits .ttr-tuit-avatar-logo {
+    width: 48px;
+}
+
+.ttr-tuits .ttr-tuit-image-overlay {
+    left: 10px;
+}
+
+.ttr-tuits .ttr-responsive-video::after {
+    display: block;
+    content: "";
+    padding-top: 56.25%;
+}
+
+.ttr-whats-happening
+.ttr-whats-happening-tuit
+.ttr-user-logo {
+    width: 68px;
+}
+
+.ttr-whats-happening .ttr-search .fas.fa-search {
+    top: 17px;
+    left: 17px;
+}
+
 .ttr-width-100-pc {
     width: 100%;
 }
@@ -16,7 +42,6 @@ Custom CSS File
 .ttr-rounded-15px {
     border-radius: 15px;
 }
-
 .ttr-width-50px{
     width:50px;
 }
@@ -29,12 +54,10 @@ Custom CSS File
 .ttr-top-75px {
     top: 75px;
 }
-
 .ttr-navigation a > i {
     width: 40px;
     text-align: center;
 }
-
 .ttr-navigation li,
 .ttr-navigation a {
     border: none;
@@ -50,7 +73,6 @@ Custom CSS File
 .ttr-width-150px{
     width:150px;
 }
-
 .ttr-tuiter {
     display: flex;
     margin: auto;

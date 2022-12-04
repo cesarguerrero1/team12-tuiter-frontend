@@ -32,13 +32,24 @@ const userSlice = createSlice({
 
         [loginThunk.fulfilled]: (state, action) => {
             state.currentUser = action.payload
+            state.loginAttemptFailed = false;
+            if(state.currentUser.isAdmin === true){
+                state.isAdmin = true
+            }
+            return
         },
         [loginThunk.rejected]: (state, action) => {
+            state.currentUser = null
+            state.loginAttemptFailed = true;
+            state.isAdmin = false;
             return
         },
 
         [logoutThunk.fulfilled]: (state, action) => {
             state.currentUser = null
+            state.loginAttemptFailed = false;
+            state.isAdmin = false;
+            return
         },
         [logoutThunk.rejected]: (state, action) => {
             return
@@ -60,9 +71,7 @@ const userSlice = createSlice({
         [deleteUserThunk.fulfilled]: (state, action) => {
             //Recall that filter will mae a new array with ONLY the values that pass your boolean test
             state.allUsers = state.allUsers.filter((user) => {
-                if(user._id != action.payload){
-                    return user;
-                }
+                return user._id !== action.payload
             })
         },
         [deleteUserThunk.rejected]: (state, action) => {
@@ -71,9 +80,9 @@ const userSlice = createSlice({
         [updateUserThunk.fulfilled]: (state, action) => {
             //Recall that we want to look for the index and then update that index
             state.allUsers.findIndex((user) => {
-                if(user._id = action.payload._uid){
-                    return user
-                }
+                const index = state.allUsers.findIndex((user) => {
+                    return user._id === action.payload._id
+                })
             })
 
             state.allUsers[index] = action.payload
