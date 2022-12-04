@@ -1,25 +1,30 @@
 /*
-TODO:
+Cesar Guerrero
+12/4/22
+CS5500 - After meeting with the professor we are going back and retroactively just making sure all of our pull requests are lined up.
 1. Add in our custom CSS sheet
 2. Handle the implementation of Redux (Reducers, Store, Provider)
 */
 
 import React from "react";
+import {BrowserRouter, Routes, Route} from "react-router-dom";
+
+//Components
 import Navigation from "../navigation";
 import WhatsHappening from "../whats-happening";
-//This use of HashRouter vs BrowserRouter needs to be fixed. It is kind of a pain
-import {BrowserRouter, Routes, Route} from "react-router-dom";
 import Home from "../home";
 import Bookmarks from "../bookmarks";
 import Profile from "../profile";
-import './tuiter.css'
 import EditProfile from "../profile/edit-profile";
 import Explore from "../explore";
 import Notifications from "../notifications";
 import Messages from "../messages";
 import Lists from "../lists";
 import More from "../more";
-import {Login} from "../profile/login";
+import Login from "../profile/login";
+
+//CSS
+import './tuiter.css'
 
 function Tuiter () {
   //Refactor the following routing code to handle a User Interface and the Admin Interface along with a centralized state management system

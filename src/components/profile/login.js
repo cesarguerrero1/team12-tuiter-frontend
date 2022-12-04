@@ -1,6 +1,11 @@
+/*
+Cesar Guerrero
+12/4/22
+CS5500 - After meeting with the professor we are going back and retroactively just making sure all of our pull requests are lined up.
+*/
 
 import {useEffect, useState} from "react";
-import * as service from "../../services/users-service";
+import * as userService from "../../services/users-service";
 import React from "react";
 import {UserList} from "./user-list";
 
@@ -10,23 +15,15 @@ export const Login = () => {
   const [newUser, setNewUser] = useState({});
   const [loginUser, setLoginUser] = useState({});
 
-  const deleteUser = (uid) =>
-    service.deleteUser(uid)
-      .then(findAllUsers)
-  const findAllUsers = () =>
-    service.findAllUsers()
-      .then(users => {
-        setExistingUsers(users)
-      })
-  const register = () =>
-    service.createUser(newUser)
-      .then(findAllUsers);
-  const login = () =>
-    service.findUserByCredentials(loginUser)
-      .then((user) => {
+  const deleteUser = (uid) => userService.deleteUser(uid).then(findAllUsers)
+  const findAllUsers = () => userService.findAllUsers().then(users => {setExistingUsers(users)})
+  const register = () => userService.createUser(newUser).then(findAllUsers);
+  const login = () => userService.findUserByCredentials(loginUser).then((user) => {
         //navigate(`/home/${user._id}`)
-      });
+  });
+
   useEffect(findAllUsers, []);
+  
   return (
     <div>
       <h1>Register</h1>
