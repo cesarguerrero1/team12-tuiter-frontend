@@ -1,8 +1,6 @@
 import axios from "axios";
 //We need to change this URL with our Heroku URL
-const BASE_URL = "http://my-node-express-project-env.eba-hxq4pgvm.us-east-1.elasticbeanstalk.com";
-// const BASE_URL = "https://software-engineering-node-fa22.herokuapp.com/api";
-// const BASE_URL = "http://localhost:4000/api";
+const BASE_URL = "https://team12-tuiter-backend.herokuapp.com";
 
 const LOGIN_API = `${BASE_URL}/api/login`;
 const USERS_API = `${BASE_URL}/api/users`;
