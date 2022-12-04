@@ -25,6 +25,7 @@ const userSlice = createSlice({
     extraReducers:{
         [registerThunk.fulfilled]: (state, action) => {
             state.allUsers.push(action.payload)
+            return
         },
         [registerThunk.rejected]: (state, action) => {
             return
@@ -79,13 +80,12 @@ const userSlice = createSlice({
         },
         [updateUserThunk.fulfilled]: (state, action) => {
             //Recall that we want to look for the index and then update that index
-            state.allUsers.findIndex((user) => {
-                const index = state.allUsers.findIndex((user) => {
-                    return user._id === action.payload._id
-                })
+            const index = state.allUsers.findIndex((user) => {
+                return user._id === action.payload._uid
             })
 
             state.allUsers[index] = action.payload
+            return
         },
         [updateUserThunk.rejected]: (state, action) => {
             return
