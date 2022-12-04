@@ -5,61 +5,60 @@ CS5500 - Final
 
 After meeting with the professor we are going back and retroactively just making sure all of our pull requests are lined up.
 */
+//Import React Items
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 
-import {Link, useNavigate} from "react-router-dom";
-import {useEffect, useState} from "react";
-import * as userService from "../../services/users-service";
-import React from "react";
-import {UserList} from "./user-list";
+//Import Thunk
+import { findAllUsersThunk, registerThunk, loginThunk } from "../../services/users-thunk";
 
-function Login(){
-  const [existingUsers, setExistingUsers] = useState([]);
+//Import Other
+import { UserList } from "./user-list";
+
+function Login() {
+  //We need to take advantage of our reducer here
+  const { allUsers, currentUser } = useSelector((state) => { return state.users });
+
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const [newUser, setNewUser] = useState({});
   const [loginUser, setLoginUser] = useState({});
 
-  const deleteUser = (uid) => userService.deleteUser(uid).then(findAllUsers)
-  const findAllUsers = () => userService.findAllUsers().then(users => {setExistingUsers(users)})
-  const register = () => userService.createUser(newUser).then(findAllUsers);
-  const login = () => userService.findUserByCredentials(loginUser).then((user) => {
-        //navigate(`/home/${user._id}`)
-  });
+  function registerClickHandler() {
+    dispatch(registerThunk(newUser));
+  }
 
-  useEffect(findAllUsers, []);
-  
+  function loginClickHandler() {
+    dispatch(loginThunk(newUser));
+    navigate("/profile");
+
+  }
+
+  useEffect(() => {
+    dispatch(findAllUsersThunk);
+  }, [dispatch])
+
   return (
     <div>
       <h1>Register</h1>
-      <input className="mb-2 form-control"
-             onChange={(e) =>
-               setNewUser({...newUser, username: e.target.value})}
-             placeholder="username"/>
-      <input className="mb-2 form-control"
-             onChange={(e) =>
-               setNewUser({...newUser, password: e.target.value})}
-             placeholder="password" type="password"/>
-      <input className="mb-2 form-control"
-             onChange={(e) =>
-               setNewUser({...newUser, email: e.target.value})}
-             placeholder="email" type="email"/>
-      <button onClick={register} className="btn btn-primary mb-5">Register
-      </button>
+      <input className="mb-2 form-control" onChange={(e) => setNewUser({ ...newUser, username: e.target.value })} placeholder="username" />
+      <input className="mb-2 form-control" onChange={(e) => setNewUser({ ...newUser, password: e.target.value })} placeholder="password" type="password" />
+      <input className="mb-2 form-control" onChange={(e) => setNewUser({ ...newUser, email: e.target.value })} placeholder="email" type="email" />
+      <button onClick={registerClickHandler} className="btn btn-primary mb-5">Register</button>
+      {
+        !currentUser &&
+        <div>
+          <h1>Login</h1>
+          <input className="mb-2 form-control" onChange={(e) => setLoginUser({ ...loginUser, username: e.target.value })} placeholder="username" />
+          <input className="mb-2 form-control" onChange={(e) => setLoginUser({ ...loginUser, password: e.target.value })} placeholder="password" type="password" />
+          <button onClick={loginClickHandler} className="btn btn-primary mb-5">Login</button>
 
-      <h1>Login</h1>
-      <input className="mb-2 form-control"
-             onChange={(e) =>
-               setLoginUser({...loginUser, username: e.target.value})}
-             placeholder="username"/>
-      <input className="mb-2 form-control"
-             onChange={(e) =>
-               setLoginUser({...loginUser, password: e.target.value})}
-             placeholder="password" type="password"/>
-      <button onClick={login} className="btn btn-primary mb-5">Login</button>
-
-      <h1>Login As</h1>
-
-      <UserList users={existingUsers} deleteUser={deleteUser}/>
-
+        </div>
+      }
+      <h1>Current Users in Database</h1>
+      <UserList users={allUsers}/>
     </div>
   );
 };

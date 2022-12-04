@@ -58,3 +58,21 @@ export const findAllUsersThunk = createAsyncThunk('users/findAllUsers', async() 
     const allusers = await usersService.findAllUsers();
     return allusers;
 })
+
+/**
+ * This function will attempt to delete a user from the database
+ * @returns - Either a 403(FORBIDDEN) or 200(SUCCESS) at which point depending on the status we will update our application state
+ */
+ export const deleteUserThunk = createAsyncThunk('users/deleteUser', async(uid) => {
+    await usersService.deleteUsersByUsername(user);
+    return uid;
+})
+
+/**
+ * This function will attempt to update a user from the database
+ * Either a 403(FORBIDDEN) or 200(SUCCESS) at which point depending on the status we will update our application state
+ */
+export const updateUserThunk = createAsyncThunk('users/updateUser', async(user) => {
+    const updatedUser = await usersService.updateUser(user);
+    return updatedUser;
+})

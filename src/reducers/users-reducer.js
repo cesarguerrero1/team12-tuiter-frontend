@@ -5,10 +5,12 @@ Team 12 - CS5500 Final
 */
 
 import {createSlice} from "@reduxjs/toolkit"
-import { isLoggedInThunk, findAllUsersThunk, registerThunk, loginThunk, logoutThunk } from "../services/users-thunk.js";
+import { isLoggedInThunk, findAllUsersThunk, registerThunk, loginThunk, logoutThunk, deleteUserThunk, updateUserThunk } from "../services/users-thunk.js";
 
 //As a note, our user will have the following pertinent properties: username, password, email, accountType, isBlocked, isAdmin
 const initialState = {
+    loginAttemptFailed: false,
+    isAdmin: false,
     currentUser: null,
     allUsers: []
 }
@@ -54,8 +56,31 @@ const userSlice = createSlice({
         },
         [findAllUsersThunk.rejected]: (state, action) => {
             return
-        }
+        },
+        [deleteUserThunk.fulfilled]: (state, action) => {
+            //Recall that filter will mae a new array with ONLY the values that pass your boolean test
+            state.allUsers = state.allUsers.filter((user) => {
+                if(user._id != action.payload){
+                    return user;
+                }
+            })
+        },
+        [deleteUserThunk.rejected]: (state, action) => {
+            return;
+        },
+        [updateUserThunk.fulfilled]: (state, action) => {
+            //Recall that we want to look for the index and then update that index
+            state.allUsers.findIndex((user) => {
+                if(user._id = action.payload._uid){
+                    return user
+                }
+            })
 
+            state.allUsers[index] = action.payload
+        },
+        [updateUserThunk.rejected]: (state, action) => {
+            return
+        }
     }
 })
 
