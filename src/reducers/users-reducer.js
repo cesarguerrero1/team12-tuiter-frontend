@@ -16,7 +16,7 @@ const initialState = {
 }
 
 const userSlice = createSlice({
-    //This is how we call it form the store
+    loginAttemptFailed: false,
     name: "users",
     //Initial State
     initialState: initialState,
@@ -74,6 +74,7 @@ const userSlice = createSlice({
             state.allUsers = state.allUsers.filter((user) => {
                 return user._id !== action.payload
             })
+            return
         },
         [deleteUserThunk.rejected]: (state, action) => {
             return;

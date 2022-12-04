@@ -27,7 +27,7 @@ async function register(user){
 
 /**
  * Attempt to login the user
- * @param credentials - An object containing the username and password
+ * @param {object} credentials - An object containing the username and password
  * @returns - Returns either a user object or a 403(FORBIDDEN) response status
  */
 async function login(credentials){
@@ -37,7 +37,7 @@ async function login(credentials){
 
 /**
  * Attempt to logout the user
- * @param user - A user object containing their username and password so the system can
+ * @param {user} user - A user object containing their username and password so the system can
  * check if they are logged in and then subsequently log them out and destroy their session
  * @returns Either a Response Status of 200(SUCCESS) or 403(FORBIDDEN)
  */
