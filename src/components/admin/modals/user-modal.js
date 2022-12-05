@@ -7,16 +7,19 @@ Team 12 - Final Project
 
 import React, { useState } from "react";
 
+//Import Services
+import { createUserThunk } from "../../../services/users-thunk";
+
 function UserModal({ hideModal, clickOutsideModal }) {
 
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [email, setEmail] = useState('');
-    const [firstname, setFirstname] = useState('');
-    const [lastname, setLastname] = useState('');
+    const [accountType, setAccountType] = useState('USER');
+    const [maritalStatus, setMaritalStatus] = useState('SINGLE');
 
     function createUserClickHandler() {
-        console.log(username, password, email, firstname, lastname);
+        console.log(username, password, email, accountType, maritalStatus);
         return
     }
 
@@ -31,28 +34,36 @@ function UserModal({ hideModal, clickOutsideModal }) {
                     <div className="modal-body">
                         <div>
                             <div className="m-3">
-                                <label for="firstname" className="form-label text-start">First Name</label>
-                                <input type="text" className="form-control" id="firstname" onChange={(event) => { setFirstname(event.target.value) }} />
+                                <label for="editModalUsername" className="form-label text-start">Username</label>
+                                <input type="text" className="form-control" id="editModalUsername" onChange={(event) => { setUsername(event.target.value) }} value={username} />
                             </div>
                             <div className="m-3">
-                                <label for="lastname" className="form-label text-start">Last Name</label>
-                                <input type="text" className="form-control" id="lastname" onChange={(event) => { setLastname(event.target.value) }} />
+                                <label for="editModalPassword" className="form-label text-start">Password</label>
+                                <input type="password" className="form-control" id="editModalPassword" onChange={(event) => { setPassword(event.target.value) }} value={password} />
                             </div>
                             <div className="m-3">
-                                <label for="email" className="form-label text-start">Email</label>
-                                <input type="email" className="form-control" id="email" onChange={(event) => { setEmail(event.target.value) }} />
+                                <label for="editModalEmail" className="form-label text-start">Email</label>
+                                <input type="email" className="form-control" id="editModalEmail" onChange={(event) => { setEmail(event.target.value) }} value={email} />
                             </div>
                             <div className="m-3">
-                                <label for="givenPassword" className="form-label">Password</label>
-                                <input type="password" className="form-control" id="givenPassword" onChange={(event) => { setPassword(event.target.value) }} />
+                                <label for="editModalAccountType" className="form-label">Account Type</label>
+                                <select id="editModalAccountType" className="form-select" onChange={(event) => { setAccountType(event.target.value) }} >
+                                    <option value="USER" selected={accountType === "USER" ? true : false}>USER</option>
+                                    <option value="ADMIN" selected={accountType === "ADMIN" ? true : false}>ADMIN</option>
+                                </select>
                             </div>
-                            <div>
-                                <button className='btn fse-login-button' onClick={createUserClickHandler}>Login</button>
+                            <div className="m-3">
+                                <label for="editModalMaritalStatus" className="form-label">Marital Status</label>
+                                <select id="editModalMaritalStatus" className="form-select" onChange={(event) => { setMaritalStatus(event.target.value) }} >
+                                    <option value="SINGLE" selected={maritalStatus === "SINGLE" ? true : false}>SINGLE</option>
+                                    <option value="MARRIED" selected={maritalStatus === "MARRIED" ? true : false}>MARRIED</option>
+                                    <option value="DIVORCED" selected={maritalStatus === "DIVORCE" ? true : false}>DIVORCED</option>
+                                </select>
                             </div>
                         </div>
-                    </div>
-                    <div className="modal-footer">
-                        <button>Add User</button>
+                        <div className="text-center">
+                            <button className='btn fse-create-button' onClick={createUserClickHandler}>Create User</button>
+                        </div>
                     </div>
                 </div>
             </div>

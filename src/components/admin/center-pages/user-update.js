@@ -98,8 +98,6 @@ function UserUpdate() {
                 </span>
             </div>
             <div className="m-3">
-            </div>
-            <div className="m-3">
                 <label for="editJoinDate" className="form-label">Joined Date (Read Only)</label>
                 <input type="date" className="form-control" id="editJoinDate" value={user.joinedDate} readOnly/>
             </div>
