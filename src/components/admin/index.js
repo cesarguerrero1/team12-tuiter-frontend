@@ -7,6 +7,7 @@ File: Base Routing file for all of the admin pages
 */
 
 import React, { useEffect } from "react";
+import {useSelector} from "react-redux";
 import { Routes, Route } from "react-router-dom";
 import AdminLeftSide from "./left-pages/admin-left-side";
 import AdminRightSide from "./right-pages/admin-right-side";
@@ -29,6 +30,9 @@ let modalCloseButton = null;
  * @returns HTML DIV - The div contains all of the data we want to show on the website
  */
 function AdminRouter() {
+
+    //Grab the current user
+    const {currentUser} = useSelector((state) => state.users);
 
     function showModal(event) {
         if (event.target === userModalButton) {

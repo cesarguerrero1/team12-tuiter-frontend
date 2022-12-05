@@ -8,7 +8,7 @@ Team 12 - Final Project
 function AdminStats(){
     return(
         <div className="d-none d-lg-block col-lg-3">
-            <div className="fse-stats-border">
+            <div className="fse-border">
                 <div className="my-3">
                     <h6 className="m-0">Active Users</h6>
                     <span>1</span>

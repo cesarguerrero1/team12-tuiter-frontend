@@ -43,10 +43,6 @@ function UserModal({ hideModal, clickOutsideModal }) {
                                 <input type="email" className="form-control" id="email" onChange={(event) => { setEmail(event.target.value) }} />
                             </div>
                             <div className="m-3">
-                                <label for="givenUsername" className="form-label text-start">Username</label>
-                                <input type="text" className="form-control" id="givenUsername" onChange={(event) => { setUsername(event.target.value) }} />
-                            </div>
-                            <div className="m-3">
                                 <label for="givenPassword" className="form-label">Password</label>
                                 <input type="password" className="form-control" id="givenPassword" onChange={(event) => { setPassword(event.target.value) }} />
                             </div>

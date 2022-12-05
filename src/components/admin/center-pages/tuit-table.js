@@ -8,7 +8,7 @@ Team 12 - Final Project
 function TuitTable({tuits}){
 
     return(
-        <div className="table-responsive">
+        <div className="table-responsive fse-border">
             <table className="table table-striped table-hover">
                 <thead>
                     <th>Message</th>
