@@ -12,7 +12,9 @@ const initialState = {
     loginAttemptFailed: false,
     isAdmin: false,
     currentUser: null,
-    allUsers: []
+    allUsers: [],
+    totalUsersCount:0,
+    blockedUsersCount:0
 }
 
 const userSlice = createSlice({
@@ -25,6 +27,7 @@ const userSlice = createSlice({
     extraReducers:{
         [registerThunk.fulfilled]: (state, action) => {
             state.allUsers.push(action.payload)
+            state.activeUsers = state.activeUsers + 1;
             return
         },
         [registerThunk.rejected]: (state, action) => {
@@ -65,6 +68,14 @@ const userSlice = createSlice({
 
         [findAllUsersThunk.fulfilled]: (state, action) => {
             state.allUsers = action.payload
+            state.totalUsersCount = state.allUsers.length;
+            let blockedCount = 0;
+            state.allUsers.forEach((user) => {
+                if(user.isBlocked === true){
+                    blockedCount++;
+                }
+            })
+            state.blockedUsersCount = blockedCount;
         },
         [findAllUsersThunk.rejected]: (state, action) => {
             return
@@ -74,6 +85,17 @@ const userSlice = createSlice({
             state.allUsers = state.allUsers.filter((user) => {
                 return user._id !== action.payload
             })
+
+            state.totalUsersCount = state.allUsers.length;
+            let blockedCount = 0;
+            state.allUsers.forEach((user) => {
+                if(user.isBlocked === true){
+                    blockedCount++;
+                }
+            })
+            state.blockedUsersCount = blockedCount;
+
+
             return
         },
         [deleteUserThunk.rejected]: (state, action) => {
@@ -86,6 +108,16 @@ const userSlice = createSlice({
             })
 
             state.allUsers[index] = action.payload
+
+            let blockedCount = 0;
+            state.allUsers.forEach((user) => {
+                if(user.isBlocked === true){
+                    blockedCount++;
+                }
+            })
+            state.blockedUsersCount = blockedCount;
+
+
             return
         },
         [updateUserThunk.rejected]: (state, action) => {

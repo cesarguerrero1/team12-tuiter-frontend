@@ -25,7 +25,7 @@ function UserTable() {
     return (
         <div className="fse-border py-3 px-2">
             <div className="text-center mb-3">
-                <h6>Click on any of the following rows to edit a user</h6>
+                <h6>Click on any of the following rows to edit a User</h6>
                 <hr className="w-50 m-auto"></hr>
             </div>
             <div className="table-responsive">

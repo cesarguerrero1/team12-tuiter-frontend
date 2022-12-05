@@ -16,6 +16,7 @@ import AdminRouter from "../admin/index.js"
 
 //Redux
 import usersReducer from "../../reducers/users-reducer.js"
+import tuitsReducer from "../../reducers/tuits-reducer.js"
 import {configureStore} from "@reduxjs/toolkit"
 import {Provider} from "react-redux"
 
@@ -24,7 +25,8 @@ import "./index.css"
 
 const store = configureStore({
   reducer: {
-    users: usersReducer
+    users: usersReducer,
+    tuits: tuitsReducer
   }
 })
 
