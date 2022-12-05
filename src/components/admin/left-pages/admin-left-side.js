@@ -9,12 +9,14 @@ File: This file handles the left-side of the admin page
 import React from "react";
 import { Routes, Route } from "react-router-dom";
 
+//Components
 import AdminNavbar from "./index.js";
 
-function AdminLeftSide(){
+
+function AdminLeftSide({showModal}){
     return(
         <Routes>
-            <Route path="/home/*" element={<AdminNavbar />} />
+            <Route path="/home/*" element={<AdminNavbar showModal={showModal}/>} />
         </Routes>
     )
 }

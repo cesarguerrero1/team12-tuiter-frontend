@@ -28,3 +28,45 @@ I wanted to create a custom CSS sheet to hold all of the CSS for the admin-relat
     margin: 6px auto;
     width: 50%;
 }
+
+/* ALL OF THE CSS THAT FOLLOWS IS FOR THE ADMIN NAVBAR */
+
+.fse-navbar-border{
+    border-width: 1px;
+    border-style: solid;
+    border-color: black;
+    border-radius: 5px;
+}
+
+.btn.fse-navbar-button{
+    display:block;
+    color: white;
+    background-color: blue;
+    padding: 6px 12px;
+    margin: 12px auto;
+    width: 75%;
+}
+
+.fse-navbar-links{
+    text-align: center;
+    text-decoration: none;
+    color: black;
+    display: block;
+    font-size: 1.25em;
+    font-weight: bold;
+    border-width: 0px 0px 1px 0px;
+    border-style: solid;
+    padding: 12px 0px;
+}
+
+/* ALL THE CSS THAT FOLLOWS IS FOR THE ADMIN STATS */
+.fse-stats-border{
+    border-width: 1px;
+    border-style: solid;
+    border-color: black;
+    border-radius: 5px;
+    padding: 0px 16px;
+}
+
+
+/* ALL THE CSS THAT FOLLOWS IS FOR TUIT MODAL */
