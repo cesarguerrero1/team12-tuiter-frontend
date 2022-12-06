@@ -1,0 +1,30 @@
+/*
+Cesar Guerrero
+11/25/22
+CS55000 - Fall 2022
+Team 12 - Final Project
+I wanted to create a custom CSS sheet to hold all of the CSS for the admin-related items
+*/
+
+/*HELPFUL CSS FOR ALL OF ADMIN ELEMENTS*/
+.fse-twitter-color{
+    color: #1da1f2;
+}
+
+
+/* ALL OF THE CSS THAT FOLLOWS IS FOR THE LOGIN PAGE */
+.fse-login-border{
+    border-width: 1px;
+    border-style: solid;
+    border-color: black;
+    border-radius: 10px;
+}
+
+.btn.fse-login-button{
+    display:block;
+    color: white;
+    background-color: #1da1f2;
+    padding: 6px 12px;
+    margin: 6px auto;
+    width: 50%;
+}

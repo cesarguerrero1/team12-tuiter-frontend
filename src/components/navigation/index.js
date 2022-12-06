@@ -1,5 +1,4 @@
 import React from "react";
-import "./navigation.css";
 import {useLocation, Link} from "react-router-dom";
 
 function Navigation() {
@@ -34,7 +33,7 @@ function Navigation() {
           })
         }
       </div>
-      <a href="#" className="mt-3 btn btn-lg btn-primary rounded-pill w-100 fw-bold text-white">Tuit</a>
+      <button className="mt-3 btn btn-lg btn-primary rounded-pill w-100 fw-bold text-white">Tuit</button>
     </div>
   );
 };
