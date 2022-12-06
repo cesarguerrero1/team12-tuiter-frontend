@@ -13,41 +13,38 @@ To take advantage of Redux, we will need to use and implement the following:
 //React
 import React, {useEffect, useState} from "react";
 import {useParams} from "react-router-dom";
+import { useSelector, useDispatch} from "react-redux";
 
 //Other
 import Tuits from "../tuits";
 import * as tuitsService from "../../services/tuits-service";
 
+//Thunks
+import {findTuitsThunk} from "../../services/tuits-thunk.js";
+
 const Home = () => {
   const {uid} = useParams();
-  const [tuits, setTuits] = useState([]);
+  const {currentUser} = useSelector((state) => state.users);
+  const { allTuits } = useSelector((state) => state.tuits);
+  const dispatch = useDispatch();
   const [tuit, setTuit] = useState('');
-  const userId = uid;
   
-  const findTuits = () => {
-    if(uid) {
-      return tuitsService.findTuitByUser(uid).then(tuits => setTuits(tuits))
-    } else {
-      return tuitsService.findAllTuits().then(tuits => setTuits(tuits))
-    }
-  }
-  
-  const createTuit = () => tuitsService.createTuit(userId, {tuit}).then(findTuits)
-  const deleteTuit = (tid) => tuitsService.deleteTuit(tid).then(findTuits)
+  const createTuit = () => tuitsService.createTuit(uid, {tuit}).then(findTuitsThunk())
+  const deleteTuit = (tid) => tuitsService.deleteTuit(tid).then(findTuitsThunk())
 
   useEffect(() => {
-    findTuits()
-  }, []);
+    dispatch(findTuitsThunk())
+  }, [dispatch]);
 
   return(
     <div className="ttr-home">
       <div className="border border-bottom-0">
         <h4 className="fw-bold p-2">Home Screen</h4>
         {
-          uid &&
+          currentUser &&
           <div className="d-flex">
             <div className="p-2">
-              <img className="ttr-width-50px rounded-circle" src="../images/nasa-logo.jpg"/>
+              <img alt="Profile Logo" className="ttr-width-50px rounded-circle" src="../images/nasa-logo.jpg"/>
             </div>
             <div className="p-2 w-100">
               <textarea onChange={(e) => setTuit(e.target.value)} placeholder="What's happening?" className="w-100 border-0"></textarea>
@@ -68,7 +65,7 @@ const Home = () => {
           </div>
         }
       </div>
-      <Tuits tuits={tuits} deleteTuit={deleteTuit}/>
+      <Tuits tuits={allTuits} deleteTuit={deleteTuit}/>
     </div>
   );
 };

@@ -45,8 +45,7 @@ export const logoutThunk = createAsyncThunk('users/logout', async(user) => {
  * returns - Either all of the users currently in our database or a 403(FORBIDDEN) response status
  */
 export const findAllUsersThunk = createAsyncThunk('users/findAllUsers', async() => {
-    const allusers = await usersService.findAllUsers();
-    return allusers;
+    return await usersService.findAllUsers();
 })
 
 /**
@@ -54,9 +53,7 @@ export const findAllUsersThunk = createAsyncThunk('users/findAllUsers', async() 
  * returns - This will either return a 403(FORBIDDEN) OR a 200(SUCCESS) response status
  */
  export const registerThunk = createAsyncThunk('users/register', async(user) => {
-    await usersService.createUser(user);
-    //If we are successful then we want to register this user in our client-side state
-    return user;
+    return await usersService.createUser(user);
 });
 
 /**
@@ -64,8 +61,8 @@ export const findAllUsersThunk = createAsyncThunk('users/findAllUsers', async() 
  * Either a 403(FORBIDDEN) or 200(SUCCESS) at which point depending on the status we will update our application state
  */
 export const updateUserThunk = createAsyncThunk('users/updateUser', async(user) => {
-    const updatedUser = await usersService.updateUser(user);
-    return updatedUser;
+    await usersService.updateUser(user);
+    return user;
 })
 
 /**

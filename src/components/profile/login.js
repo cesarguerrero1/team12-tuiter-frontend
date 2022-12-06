@@ -11,7 +11,7 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
 //Import Thunk
-import { findAllUsersThunk, registerThunk, loginThunk } from "../../services/users-thunk";
+import { findAllUsersThunk, loginThunk } from "../../services/users-thunk";
 
 //Import Other
 import { UserList } from "./user-list";
@@ -23,30 +23,19 @@ function Login() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const [newUser, setNewUser] = useState({});
   const [loginUser, setLoginUser] = useState({});
 
-  function registerClickHandler() {
-    dispatch(registerThunk(newUser));
-  }
-
   function loginClickHandler() {
-    dispatch(loginThunk(newUser));
-    navigate("/profile");
-
+    dispatch(loginThunk(loginUser));
+    setTimeout(() => {navigate("/profile")}, 1500)
   }
 
   useEffect(() => {
-    dispatch(findAllUsersThunk);
+    dispatch(findAllUsersThunk());
   }, [dispatch])
 
   return (
     <div>
-      <h1>Register</h1>
-      <input className="mb-2 form-control" onChange={(e) => setNewUser({ ...newUser, username: e.target.value })} placeholder="username" />
-      <input className="mb-2 form-control" onChange={(e) => setNewUser({ ...newUser, password: e.target.value })} placeholder="password" type="password" />
-      <input className="mb-2 form-control" onChange={(e) => setNewUser({ ...newUser, email: e.target.value })} placeholder="email" type="email" />
-      <button onClick={registerClickHandler} className="btn btn-primary mb-5">Register</button>
       {
         !currentUser &&
         <div>

@@ -9,7 +9,6 @@ import React from "react";
 import {useSelector} from "react-redux";
 
 function AdminStats(){
-
     const {totalUsersCount, blockedUsersCount} = useSelector((state) => state.users);
     const {totalTuitsCount, blockedTuitsCount, flaggedTuitsCount} = useSelector((state) => state.tuits);
 
@@ -27,7 +26,7 @@ function AdminStats(){
                 </div>
                 <hr />
                 <div className="my-3 px-3">
-                    <h6 className="m-0">Total Number of TUits</h6>
+                    <h6 className="m-0">Total Number of Tuits</h6>
                     <span>{totalTuitsCount}</span>                   
                 </div>
                 <hr />

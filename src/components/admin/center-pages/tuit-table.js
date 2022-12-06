@@ -5,8 +5,10 @@ CS55000 - Fall 2022
 Team 12 - Final Project
 */
 
-import { useSelector } from "react-redux";
+import React from "react";
+import { useSelector} from "react-redux";
 import { useNavigate } from "react-router"
+
 
 function TuitTable() {
 
@@ -19,9 +21,9 @@ function TuitTable() {
      * therefore this will navigate you to a new screen where you will see all of the data associated with this Tuit! 
      * @param {Tuit} tuit - The tuit we wish to edit!
      */
-    function tuitRowClickHandler() {
+    function tuitRowClickHandler(tuit) {
         //Go to the page with this users id! /users/:uid
-        navigate("/admin/home/tuits/edit/1");
+        navigate(`/admin/home/tuits/edit/${tuit._id}`, {state:tuit});
     }
 
     return (
@@ -37,19 +39,19 @@ function TuitTable() {
                             <th>Message</th>
                             <th>Posted On</th>
                             <th>Posted By</th>
-                            <th>Flagged?</th>
                             <th>Blocked?</th>
+                            <th>Flagged?</th>
                         </tr>
                     </thead>
                     <tbody>
                         {allTuits.map((tuit) => {
                             return (
-                                <tr className="align-middle" onClick={() => { tuitRowClickHandler(tuit) }}>
-                                    <td>tuit.tuit</td>
-                                    <td>tuit.postedOn</td>
-                                    <td>tuit.postedBy</td>
-                                    <td>tuit.isBlocked</td>
-                                    <td>tuit.isFlagged</td>
+                                <tr key={tuit._id} className="align-middle" onClick={() => { tuitRowClickHandler(tuit) }}>
+                                    <td>{tuit.tuit}</td>
+                                    <td>{tuit.postedOn.slice(0,10)}</td>
+                                    <td>{tuit.postedBy.username}</td>
+                                    <td>{tuit.isBlocked ? "TRUE" : "FALSE"}</td>
+                                    <td>{tuit.isFlagged ? "TRUE" : "FALSE"}</td>
                                 </tr>
                             )
                         })

@@ -6,13 +6,15 @@ Team 12 - Final Project
 File: Base Routing file for all of the admin pages
 */
 
-import React, { useEffect } from "react";
+import React, {useEffect} from "react";
+import {useSelector} from "react-redux";
 import { Routes, Route } from "react-router-dom";
+
+//Components
 import AdminLeftSide from "./left-pages/admin-left-side";
 import AdminRightSide from "./right-pages/admin-right-side";
 import LoginPage from "./login.js"
 import HomePage from "./center-pages/home.js";
-
 
 //CSS Import
 import "./index.css"
@@ -28,6 +30,8 @@ let tuitModalButton = null;
  * @returns HTML DIV - The div contains all of the data we want to show on the website
  */
 function AdminRouter() {
+    //We need access our store and pass information along!
+    const {currentUser} = useSelector((state) => state.users);
 
     function showModal(event) {
         if (event.target === userModalButton) {
@@ -40,7 +44,6 @@ function AdminRouter() {
     function hideModal(event) {
         //Recall that the close button is (3) steps away from overall modal container that we need to hide
         let parentContainer = event.currentTarget.parentNode.parentNode.parentNode.parentNode;
-        console.log(parentContainer);
         if (parentContainer === userModal) {
             userModal.classList.remove('d-block');
         } else if (parentContainer === tuitModal) {
@@ -66,19 +69,18 @@ function AdminRouter() {
         //Grab Buttons
         userModalButton = document.getElementById('userModalButton');
         tuitModalButton = document.getElementById('tuitModalButton');
-
     })
 
     return (
         <div className="container">
             <div className="row my-2">
-                <AdminLeftSide showModal={showModal} />
+                <AdminLeftSide currentUser={currentUser} showModal={showModal} />
                 <Routes>
                     <Route index element={<LoginPage />} />
                     <Route path="/login" element={<LoginPage />} />
                     <Route path="/home/*" element={<HomePage hideModal={hideModal} clickOutsideModal={clickOutsideModal} />} />
                 </Routes>
-                <AdminRightSide />
+                <AdminRightSide/>
             </div>
         </div>
     )

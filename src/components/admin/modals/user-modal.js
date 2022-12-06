@@ -7,15 +7,13 @@ Team 12 - Final Project
 
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router";
 
 //Import Services
-import { registerThunk } from "../../../services/users-thunk";
+import {registerThunk } from "../../../services/users-thunk";
 
 function UserModal({ hideModal, clickOutsideModal }) {
 
     const dispatch = useDispatch();
-    const navigate = useNavigate();
 
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
@@ -36,8 +34,16 @@ function UserModal({ hideModal, clickOutsideModal }) {
             maritalStatus
         }))
 
-        navigate("/admin/home/users")
+        document.getElementById('userModal').classList.remove('d-block');
+        setUsername('');
+        setPassword('');
+        setEmail('');
+        setAccountType('USER');
+        setMaritalStatus('SINGLE');
+
         
+        //We want to force a reload!
+        window.location.reload();
         return
     }
 

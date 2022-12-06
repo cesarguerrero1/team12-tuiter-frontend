@@ -34,8 +34,9 @@ export const deleteTuitThunk = createAsyncThunk('tuits/deleteTuit', async(tid) =
  * application state as a result
  * @returns - Either an empty object or the newly created Tuit
  */
-export const createTuitThunk = createAsyncThunk('tuits/createTuit', async(tuit) => {
-    return await tuitsService.createTuit(tuit);
+export const createTuitThunk = createAsyncThunk('tuits/createTuit', async(newTuit) => {
+    const createdTuit = await tuitsService.createTuit(newTuit.postedBy, newTuit);
+    return createdTuit;
 })
 
 /**
@@ -43,6 +44,6 @@ export const createTuitThunk = createAsyncThunk('tuits/createTuit', async(tuit) 
  * application state as a result
  * @returns - We are returning the newly updated Tuit Object
  */
-export const updateTuitThunk = createAsyncThunk('tuits/updateTuit', async(tuitUpdate) => {
-    return await tuitsService.updateTuit(tuitUpdate._id, tuitUpdate);
+export const updateTuitThunk = createAsyncThunk('tuits/updateTuit', async(updatedTuit) => {
+    return await tuitsService.updateTuit(updatedTuit._id, updatedTuit);
 })

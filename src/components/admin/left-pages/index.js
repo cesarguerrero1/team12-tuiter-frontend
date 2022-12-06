@@ -8,13 +8,13 @@ Team 12 - Final Project
 import React from "react";
 import {Link} from "react-router-dom";
 
-function AdminNavbar({showModal}){
+function AdminNavbar({currentUser, showModal}){    
     return(
         <div className="col-3 col-xl-2">
            <div className = "fse-border">
                 <div>
                     <div className="fse-navbar-links">
-                        <h6>Welcome,  </h6>
+                        <h6>Welcome,  {currentUser && currentUser.username}</h6>
                         <i className="fab fa-twitter fse-twitter-color fa-"></i> 
                     </div>
                 </div>

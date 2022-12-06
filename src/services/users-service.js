@@ -1,7 +1,6 @@
 import axios from "axios";
 //We need to change this URL with our Heroku URL
 const BASE_URL = process.env.REACT_APP_API_BASE;
-
 const USERS_API = `${BASE_URL}/admin/api/users`;
 
 export const createUser = (user) => axios.post(`${USERS_API}`, user).then(response => response.data);

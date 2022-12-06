@@ -5,9 +5,9 @@ CS55000 - Fall 2022
 Team 12 - Final Project
 */
 
-import React, { useEffect, useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { useParams, useNavigate } from "react-router";
+import React, {useState } from "react";
+import { useDispatch } from "react-redux";
+import { useNavigate, useLocation} from "react-router";
 
 //Import services
 import { deleteUserThunk, updateUserThunk } from "../../../services/users-thunk.js";
@@ -17,19 +17,17 @@ import { deleteUserThunk, updateUserThunk } from "../../../services/users-thunk.
  * @param {user} user - The user we are going to display information for
  */
 function UserUpdate() {
-    const { uid } = useParams();
-    const { allUsers } = useSelector(state => state.users);
-    const [userToEdit, setUserToEdit] = useState(null);
+    const userToEdit = useLocation().state;
 
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
-    const [username, setUsername] = useState('');
-    const [email, setEmail] = useState('');
-    const [accountType, setAccountType] = useState('');
-    const [maritalStatus, setMaritalStatus] = useState('');
-    const [isBlocked, setIsBlocked] = useState(false);
-    const [isAdmin, setIsAdmin] = useState(false)
+    const [username, setUsername] = useState(userToEdit.username);
+    const [email, setEmail] = useState(userToEdit.email);
+    const [accountType, setAccountType] = useState(userToEdit.accountType);
+    const [maritalStatus, setMaritalStatus] = useState(userToEdit.maritalStatus);
+    const [isBlocked, setIsBlocked] = useState(userToEdit.isBlocked);
+    const [isAdmin, setIsAdmin] = useState(userToEdit.isAdmin)
 
     function updateClickHandler(userToEdit) {
         dispatch(updateUserThunk({
@@ -41,34 +39,15 @@ function UserUpdate() {
             isBlocked,
             isAdmin
         }))
-        navigate("../users")
+        setTimeout(()=> navigate("../users"), 1500);
         return
     }
 
     function deleteClickHandler(userToEdit) {
         dispatch(deleteUserThunk(userToEdit._id));
-
-        navigate("../users")
+        setTimeout(()=> navigate("../users"), 1500);
         return
     }
-
-    useEffect(() => {
-        if (allUsers.length === 0) {
-            navigate("../users");
-        } else {
-            let userToEdit = allUsers.find((user) => {
-                return user._id === uid;
-            })
-            setUserToEdit(userToEdit);
-            setUsername(userToEdit.username);
-            setEmail(userToEdit.email);
-            setAccountType(userToEdit.accountType);
-            setMaritalStatus(userToEdit.maritalStatus);
-            setIsBlocked(userToEdit.isBlocked);
-            setIsAdmin(userToEdit.isAdmin);
-        }
-    }, [allUsers, navigate, uid])
-
 
     return (
         <div className="fse-border py-3 px-2">

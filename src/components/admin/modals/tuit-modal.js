@@ -6,15 +6,32 @@ Team 12 - Final Project
 */
 
 import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
+
+//Import Services
 import { createTuitThunk } from "../../../services/tuits-thunk";
 
 function TuitModal({ hideModal, clickOutsideModal }) {
 
+    const {currentUser} = useSelector((state) => state.users);
+
+    const dispatch = useDispatch();
+
     const [tuit, setTuit] = useState('');
 
     function createTuitClickHandler() {
-        console.log(tuit);
+        if(tuit === ""){
+            alert("You need to write content to tuit!");
+            return
+        }
+
+        dispatch(createTuitThunk({tuit, postedBy: '638ea305ac6909770cce5010'}));
+        document.getElementById('tuitModal').classList.remove('d-block');
+        setTuit('');
+        //We need to refresh this as we can't directly get the user object when we first create our Tuit
+        window.location.reload();
+        
         return
     }
 
