@@ -7,7 +7,6 @@ File: Base Routing file for all of the admin pages
 */
 
 import React, { useEffect } from "react";
-import {useSelector} from "react-redux";
 import { Routes, Route } from "react-router-dom";
 import AdminLeftSide from "./left-pages/admin-left-side";
 import AdminRightSide from "./right-pages/admin-right-side";
@@ -23,16 +22,12 @@ let userModal = null;
 let tuitModal = null;
 let userModalButton = null;
 let tuitModalButton = null;
-let modalCloseButton = null;
 
 /**
  * The Admin function is used to handle routing and what content to render when someone is attempting to access the admin page
  * @returns HTML DIV - The div contains all of the data we want to show on the website
  */
 function AdminRouter() {
-
-    //Grab the current user
-    const {currentUser} = useSelector((state) => state.users);
 
     function showModal(event) {
         if (event.target === userModalButton) {
@@ -67,7 +62,6 @@ function AdminRouter() {
         //Grab Modals
         userModal = document.getElementById('userModal');
         tuitModal = document.getElementById('tuitModal');
-        console.log(userModal);
 
         //Grab Buttons
         userModalButton = document.getElementById('userModalButton');

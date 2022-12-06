@@ -6,11 +6,16 @@ Team 12 - Final Project
 */
 
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router";
 
 //Import Services
-import { createUserThunk } from "../../../services/users-thunk";
+import { registerThunk } from "../../../services/users-thunk";
 
 function UserModal({ hideModal, clickOutsideModal }) {
+
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
@@ -19,7 +24,20 @@ function UserModal({ hideModal, clickOutsideModal }) {
     const [maritalStatus, setMaritalStatus] = useState('SINGLE');
 
     function createUserClickHandler() {
-        console.log(username, password, email, accountType, maritalStatus);
+        if(username === "" || password === "" || email === ""){
+            alert("Username, password, and email must all contain valid values");
+            return
+        }
+        dispatch(registerThunk({
+            username,
+            password,
+            email,
+            accountType,
+            maritalStatus
+        }))
+
+        navigate("/admin/home/users")
+        
         return
     }
 

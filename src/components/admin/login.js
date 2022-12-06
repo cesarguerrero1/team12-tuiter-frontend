@@ -28,9 +28,7 @@ function LoginPage() {
         } else {
             setErrorMessage("Attempting to Login...");
             dispatch(loginThunk({ username, password }));
-            setTimeout(
-                () => { navigate('./home') }, 2000
-            );
+            setTimeout(() => { navigate('./home') }, 2000);
         }
     }
 

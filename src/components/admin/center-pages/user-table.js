@@ -5,22 +5,33 @@ CS55000 - Fall 2022
 Team 12 - Final Project
 */
 
-import { useSelector } from "react-redux";
+import { useEffect } from "react";
+import { useSelector, useDispatch} from "react-redux";
 import { useNavigate } from "react-router"
+
+//Importing thunks
+import {findAllUsersThunk} from "../../../services/users-thunk";
 
 function UserTable() {
 
     const {allUsers} = useSelector((state) => state.users);
 
     const navigate = useNavigate();
+    const dispatch = useDispatch();
+
     /**
      * When you click on a table row, we are assuming you want to edit that user, therefore this will navigate you to a new screen where you will see all of the data associated with this user! 
      * @param {User} user - The user we wish to edit!
      */
-    function userRowClickHandler() {
+    function userRowClickHandler(user) {
         //Go to the page with this users id! /users/:uid
-        navigate("/admin/home/users/edit/1");
+        navigate(`/admin/home/users/edit/${user._id}`);
     }
+
+    //When the page loads call all of the users!
+    useEffect(() => {
+        dispatch(findAllUsersThunk())
+    }, [dispatch])
 
     return (
         <div className="fse-border py-3 px-2">
@@ -42,12 +53,12 @@ function UserTable() {
                     <tbody>
                         {allUsers.map((user) => {
                             return(
-                                <tr className="align-middle" onClick={() => { userRowClickHandler(user) }}>
-                                    <td>user.username</td>
-                                    <td>user.email</td>
-                                    <td>user.accountType</td>
-                                    <td>user.isBlocked</td>
-                                    <td>user.joinedDate</td>
+                                <tr key={user._id} className="align-middle" onClick={() => { userRowClickHandler(user) }}>
+                                    <td>{user.username}</td>
+                                    <td>{user.email}</td>
+                                    <td>{user.accountType}</td>
+                                    <td>{user.isBlocked ? "TRUE" : "FALSE"}</td>
+                                    <td>{user.joinedDate.slice(0, 10)}</td>
                                 </tr>
                             )
                         })

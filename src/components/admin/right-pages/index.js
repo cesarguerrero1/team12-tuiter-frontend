@@ -5,7 +5,7 @@ CS55000 - Fall 2022
 Team 12 - Final Project
 */
 
-import React, { useEffect } from "react";
+import React from "react";
 import {useSelector} from "react-redux";
 
 function AdminStats(){

@@ -18,7 +18,7 @@ const api = axios.create({
 /**
  * Attempt to ping the server and register them as a user
  * @param user - An object containing their username, email, and password
- * @return - Either a Resonse Status of 200(SUCCESS) or 403(FORBIDDEN)
+ * @return - Either a Response Status of 200(SUCCESS) or 403(FORBIDDEN)
  */
 async function register(user){
     const response = await api.post(`${AUTH_API}/register`, user);
