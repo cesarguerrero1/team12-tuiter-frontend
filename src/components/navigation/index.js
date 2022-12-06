@@ -1,10 +1,8 @@
 import React from "react";
-import "./navigation.css";
 import {useLocation, Link} from "react-router-dom";
 
 function Navigation() {
   const {pathname} = useLocation();
-  // console.log(location.pathname);
   const links = [
     {label: 'Tuiter', icon: 'fa-square-t', path: '/tuiter'},
     {label: 'Home', icon: 'fa-home', path: '/home'},
@@ -14,7 +12,6 @@ function Navigation() {
     {label: 'Bookmarks', icon: 'fa-bookmark', path: '/bookmarks'},
     {label: 'Lists', icon: 'fa-list', path: '/lists'},
     {label: 'Profile', icon: 'fa-user', path: '/profile'},
-    {label: 'Movies', icon: 'fa-user', path: '/movies'},
     {label: 'More', icon: 'fa-circle-ellipsis', path: '/more'},
     {label: 'Login', icon: 'fa-user', path: '/login'},
   ];
@@ -36,8 +33,7 @@ function Navigation() {
           })
         }
       </div>
-      <a href="#" className="mt-3 btn btn-lg btn-primary rounded-pill w-100 fw-bold text-white">
-        Tuit</a>
+      <button className="mt-3 btn btn-lg btn-primary rounded-pill w-100 fw-bold text-white">Tuit</button>
     </div>
   );
 };

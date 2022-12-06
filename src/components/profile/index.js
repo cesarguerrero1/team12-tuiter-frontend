@@ -23,13 +23,9 @@ const Profile = () => {
         </div>
 
         <div className="p-2">
-          <h4 className="fw-bolder pb-0 mb-0">
-            NASA<i className="fa fa-badge-check text-primary"></i>
-          </h4>
+          <h4 className="fw-bolder pb-0 mb-0">NASA<i className="fa fa-badge-check text-primary"></i></h4>
           <h6 className="pt-0">@NASA</h6>
-          <p className="pt-2">
-            There's space for everybody. Sparkles
-          </p>
+          <p className="pt-2">There's space for everybody. Sparkles</p>
           <p>
             <i className="far fa-location-dot me-2"></i>
             Pale Blue Dot
@@ -45,24 +41,16 @@ const Profile = () => {
           <b className="ms-4">51.1M</b> Followers
           <ul className="mt-4 nav nav-pills nav-fill">
             <li className="nav-item">
-              <Link to="/profile/tuits"
-                    className="nav-link active">
-                Tuits</Link>
+              <Link to="/profile/tuits" className="nav-link active">Tuits</Link>
             </li>
             <li className="nav-item">
-              <Link to="/profile/tuits-and-replies"
-                    className="nav-link">
-                Tuits & replies</Link>
+              <Link to="/profile/tuits-and-replies" className="nav-link">Tuits & replies</Link>
             </li>
             <li className="nav-item">
-              <Link to="/profile/media"
-                    className="nav-link">
-                Media</Link>
+              <Link to="/profile/media" className="nav-link">Media</Link>
             </li>
             <li className="nav-item">
-              <Link to="/profile/likes"
-                    className="nav-link">
-                Likes</Link>
+              <Link to="/profile/likes" className="nav-link">Likes</Link>
             </li>
           </ul>
         </div>
