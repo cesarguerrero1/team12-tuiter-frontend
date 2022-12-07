@@ -11,7 +11,7 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
 //Import Thunk
-import { findAllUsersThunk, registerThunk, loginThunk } from "../../services/users-thunk";
+import { findAllUsersThunk, loginThunk, logoutThunk} from "../../services/users-thunk";
 
 //Import Other
 import { UserList } from "./user-list";
@@ -23,30 +23,23 @@ function Login() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const [newUser, setNewUser] = useState({});
   const [loginUser, setLoginUser] = useState({});
 
-  function registerClickHandler() {
-    dispatch(registerThunk(newUser));
+  function loginClickHandler() {
+    dispatch(loginThunk(loginUser));
+    setTimeout(() => {navigate("/home")}, 1500)
   }
 
-  function loginClickHandler() {
-    dispatch(loginThunk(newUser));
-    navigate("/profile");
-
+  function logoutClickHandler(){
+    dispatch(logoutThunk());
   }
 
   useEffect(() => {
-    dispatch(findAllUsersThunk);
+    dispatch(findAllUsersThunk());
   }, [dispatch])
 
   return (
     <div>
-      <h1>Register</h1>
-      <input className="mb-2 form-control" onChange={(e) => setNewUser({ ...newUser, username: e.target.value })} placeholder="username" />
-      <input className="mb-2 form-control" onChange={(e) => setNewUser({ ...newUser, password: e.target.value })} placeholder="password" type="password" />
-      <input className="mb-2 form-control" onChange={(e) => setNewUser({ ...newUser, email: e.target.value })} placeholder="email" type="email" />
-      <button onClick={registerClickHandler} className="btn btn-primary mb-5">Register</button>
       {
         !currentUser &&
         <div>
@@ -57,7 +50,13 @@ function Login() {
 
         </div>
       }
-      <h1>Current Users in Database</h1>
+      {currentUser &&
+        <div className="my-3">
+          <h5>Currently Logged In User: {currentUser.username}</h5>
+          <button className="btn fse-logout-button" onClick={logoutClickHandler}>Logout</button>
+        </div>
+      }
+      <h2>Valid Users in Database</h2>
       <UserList users={allUsers}/>
     </div>
   );

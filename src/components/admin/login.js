@@ -28,16 +28,14 @@ function LoginPage() {
         } else {
             setErrorMessage("Attempting to Login...");
             dispatch(loginThunk({ username, password }));
-            setTimeout(
-                () => { navigate('./home') }, 2000
-            );
+            setTimeout(() => { navigate('/admin/home') }, 1500);
         }
     }
 
     //If the user is already logged in and an admin, don't show this
     useEffect(() => {
         if(currentUser !== null && isAdmin === true){
-            navigate('/home');
+            navigate('/admin/home');
         }
     });
 
