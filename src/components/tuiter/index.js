@@ -7,7 +7,7 @@ CS5500 - After meeting with the professor we are going back and retroactively ju
 */
 
 import React from "react";
-import {BrowserRouter, Routes, Route} from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 //Components
 import CheckUser from "../authentication/index.js"
@@ -16,16 +16,18 @@ import AdminRouter from "../admin/index.js"
 
 //Redux
 import usersReducer from "../../reducers/users-reducer.js"
-import {configureStore} from "@reduxjs/toolkit"
-import {Provider} from "react-redux"
+import tuitsReducer from "../../reducers/tuits-reducer.js"
+import { configureStore } from "@reduxjs/toolkit"
+import { Provider } from "react-redux"
 
 //CSS
 import "./index.css"
 
 const store = configureStore({
-  reducer: {
-    users: usersReducer
-  }
+    reducer: {
+        users: usersReducer,
+        tuits: tuitsReducer
+    }
 })
 
 /**
@@ -33,7 +35,7 @@ const store = configureStore({
  * to handle checking, for the entire program, whether or not a user is logged in
  * @returns - HTML elements
  */
- function Tuiter() {
+function Tuiter() {
     return (
         <Provider store={store}>
             <CheckUser>
@@ -48,4 +50,5 @@ const store = configureStore({
         </Provider>
     );
 }
+
 export default Tuiter;

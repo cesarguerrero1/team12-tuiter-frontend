@@ -5,9 +5,7 @@ export const UserList = ({users}) => {
     <div className="list-group">
       {
         users.map(user => {
-          return (
-            <span className="fs-3">{user.username}</span>
-          )
+            return (!user.isBlocked && <span className="fs-3">{user.username}</span> )
         })
       }
     </div>
