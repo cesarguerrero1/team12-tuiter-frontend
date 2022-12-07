@@ -26,11 +26,9 @@ function TuitModal({ hideModal, clickOutsideModal }) {
             return
         }
 
-        dispatch(createTuitThunk({tuit, postedBy: '638ea305ac6909770cce5010'}));
+        dispatch(createTuitThunk({tuit, postedBy: currentUser._id}));
         document.getElementById('tuitModal').classList.remove('d-block');
         setTuit('');
-        //We need to refresh this as we can't directly get the user object when we first create our Tuit
-        window.location.reload();
         
         return
     }

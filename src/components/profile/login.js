@@ -11,7 +11,7 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
 //Import Thunk
-import { findAllUsersThunk, loginThunk } from "../../services/users-thunk";
+import { findAllUsersThunk, loginThunk, logoutThunk} from "../../services/users-thunk";
 
 //Import Other
 import { UserList } from "./user-list";
@@ -27,7 +27,11 @@ function Login() {
 
   function loginClickHandler() {
     dispatch(loginThunk(loginUser));
-    setTimeout(() => {navigate("/profile")}, 1500)
+    setTimeout(() => {navigate("/home")}, 1500)
+  }
+
+  function logoutClickHandler(){
+    dispatch(logoutThunk());
   }
 
   useEffect(() => {
@@ -46,7 +50,13 @@ function Login() {
 
         </div>
       }
-      <h1>Current Users in Database</h1>
+      {currentUser &&
+        <div className="my-3">
+          <h5>Currently Logged In User: {currentUser.username}</h5>
+          <button className="btn fse-logout-button" onClick={logoutClickHandler}>Logout</button>
+        </div>
+      }
+      <h2>Valid Users in Database</h2>
       <UserList users={allUsers}/>
     </div>
   );

@@ -41,9 +41,6 @@ function UserModal({ hideModal, clickOutsideModal }) {
         setAccountType('USER');
         setMaritalStatus('SINGLE');
 
-        
-        //We want to force a reload!
-        window.location.reload();
         return
     }
 

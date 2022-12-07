@@ -13,10 +13,10 @@ import { Routes, Route } from "react-router-dom";
 import AdminNavbar from "./index.js";
 
 
-function AdminLeftSide({showModal}){
+function AdminLeftSide({currentUser, showModal}){
     return(
         <Routes>
-            <Route path="/home/*" element={<AdminNavbar showModal={showModal}/>} />
+            <Route path="/home/*" element={<AdminNavbar currentUser={currentUser} showModal={showModal}/>} />
         </Routes>
     )
 }

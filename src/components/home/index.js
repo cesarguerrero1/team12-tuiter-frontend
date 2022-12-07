@@ -20,7 +20,8 @@ import Tuits from "../tuits";
 import * as tuitsService from "../../services/tuits-service";
 
 //Thunks
-import {findTuitsThunk} from "../../services/tuits-thunk.js";
+import {createTuitThunk, findTuitsThunk} from "../../services/tuits-thunk.js";
+
 
 const Home = () => {
   const {uid} = useParams();
@@ -29,7 +30,11 @@ const Home = () => {
   const dispatch = useDispatch();
   const [tuit, setTuit] = useState('');
   
-  const createTuit = () => tuitsService.createTuit(uid, {tuit}).then(findTuitsThunk())
+  function createTuit(){
+    dispatch(createTuitThunk({tuit, postedBy: currentUser._id}))
+  }
+  
+  //This is no longer used!
   const deleteTuit = (tid) => tuitsService.deleteTuit(tid).then(findTuitsThunk())
 
   useEffect(() => {

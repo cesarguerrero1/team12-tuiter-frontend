@@ -18,7 +18,6 @@ const initialState = {
 }
 
 const userSlice = createSlice({
-    loginAttemptFailed: false,
     name: "users",
     //Initial State
     initialState: initialState,
@@ -28,16 +27,19 @@ const userSlice = createSlice({
         [registerThunk.fulfilled]: (state, action) => {
             state.allUsers.push(action.payload)
             state.activeUsers = state.activeUsers + 1;
+            window.location.reload();
             return
         },
         [registerThunk.rejected]: (state, action) => {
+            alert('A user with that username already exists');
+            window.location.reload();
             return
         },
 
         [loginThunk.fulfilled]: (state, action) => {
             state.currentUser = action.payload
             state.loginAttemptFailed = false;
-            if(state.currentUser.isAdmin === true){
+            if(action.payload.isAdmin === true){
                 state.isAdmin = true
             }
             return
@@ -61,9 +63,11 @@ const userSlice = createSlice({
 
         [isLoggedInThunk.fulfilled]: (state, action) => {
             state.currentUser = action.payload
+            state.isAdmin = action.payload.isAdmin;
         },
         [isLoggedInThunk.rejected]: (state, action) => {
             state.currentUser = null;
+            state.isAdmin = false;
         },
 
         [findAllUsersThunk.fulfilled]: (state, action) => {

@@ -64,7 +64,7 @@ function UserUpdate() {
                     </div>
                     <div className="m-3">
                         <label for="editPassword" className="form-label">Password Hash (Read Only)</label>
-                        <input type="text" className="form-control" id="editPassword" value={userToEdit.passwordHash} readOnly />
+                        <input type="text" className="form-control" id="editPassword" value={userToEdit.password} readOnly />
                     </div>
                     <div className="m-3">
                         <label for="editAccountType" className="form-label">Account Type</label>

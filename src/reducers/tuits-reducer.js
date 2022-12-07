@@ -69,8 +69,11 @@ const tuitsSlice = createSlice({
         [createTuitThunk.fulfilled]: (state, action) => {
             state.allTuits.push(action.payload)
             state.totalTuitsCount = state.allTuits.length;
+            window.location.reload();
+            return
         },
         [createTuitThunk.rejected]: (state, action) => {
+            window.location.reload();
             return
         },
 

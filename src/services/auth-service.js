@@ -16,16 +16,6 @@ const api = axios.create({
 })
 
 /**
- * Attempt to ping the server and register them as a user
- * @param user - An object containing their username, email, and password
- * @return - Either a Response Status of 200(SUCCESS) or 403(FORBIDDEN)
- */
-async function register(user){
-    const response = await api.post(`${AUTH_API}/register`, user);
-    return response.data
-}
-
-/**
  * Attempt to login the user
  * @param {object} credentials - An object containing the username and password
  * @returns - Returns either a user object or a 403(FORBIDDEN) response status
@@ -51,9 +41,9 @@ async function logout(user){
  * @returns Either a 403(FORBIDDEN) response status or the user that is logged in
  */
 async function isLoggedIn(){
-    const response = api.post(`${AUTH_API}/profile`);
+    const response = await api.post(`${AUTH_API}/profile`);
     return response.data
 }
 
 
-export {register, login, logout, isLoggedIn}
+export {login, logout, isLoggedIn}

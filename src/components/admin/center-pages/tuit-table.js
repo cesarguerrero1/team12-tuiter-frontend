@@ -49,7 +49,7 @@ function TuitTable() {
                                 <tr key={tuit._id} className="align-middle" onClick={() => { tuitRowClickHandler(tuit) }}>
                                     <td>{tuit.tuit}</td>
                                     <td>{tuit.postedOn.slice(0,10)}</td>
-                                    <td>{tuit.postedBy.username}</td>
+                                    {tuit.postedBy !== null ? <td>{tuit.postedBy.username}</td> : <td>NULL</td>}
                                     <td>{tuit.isBlocked ? "TRUE" : "FALSE"}</td>
                                     <td>{tuit.isFlagged ? "TRUE" : "FALSE"}</td>
                                 </tr>

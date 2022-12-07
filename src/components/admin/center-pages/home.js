@@ -31,12 +31,10 @@ function HomePage({hideModal, clickOutsideModal}){
 
     
     useEffect(() => {
-        /* Turn this on when our authentication works!
         //You should never be allowed to see these pages if you are not logged in AND not an admin
         if(currentUser === null || isAdmin === false){
             navigate("/admin");
         }
-        */
 
         //We need to refresh everything as we go - The admin panel ALWAYS needs to be up to date
         dispatch(findAllUsersThunk());

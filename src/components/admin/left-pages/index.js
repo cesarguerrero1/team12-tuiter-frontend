@@ -6,16 +6,29 @@ Team 12 - Final Project
 */
 
 import React from "react";
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
+import {useDispatch} from "react-redux"
 
-function AdminNavbar({currentUser, showModal}){    
+import { logoutThunk } from "../../../services/users-thunk.js";
+
+
+function AdminNavbar({currentUser, showModal}){  
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+
+    function logoutClickHandler(){
+        dispatch(logoutThunk())
+        navigate('/admin/login')
+    }
+
     return(
         <div className="col-3 col-xl-2">
            <div className = "fse-border">
                 <div>
                     <div className="fse-navbar-links">
-                        <h6>Welcome,  {currentUser && currentUser.username}</h6>
-                        <i className="fab fa-twitter fse-twitter-color fa-"></i> 
+                        <h6>Current Admin: {currentUser && currentUser.username}</h6>
+                        <h6 className="text-danger text-uppercase text-decoration-underline" onClick={logoutClickHandler}>Logout</h6>
+                        <i className="fab fa-twitter fse-twitter-color fa-"></i>
                     </div>
                 </div>
                 <div>

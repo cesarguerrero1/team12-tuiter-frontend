@@ -79,9 +79,6 @@ I wanted to create a custom CSS sheet to hold all of the CSS for the admin-relat
     width: 25%;
 }
 
-/* ALL THE CSS THAT FOLLOWS IS FOR THE ADMIN STATS */
-
-
 /* ALL THE CSS THAT FOLLOWS IS FOR MODALS */
 .btn.fse-create-button{
     color: white;
@@ -89,4 +86,13 @@ I wanted to create a custom CSS sheet to hold all of the CSS for the admin-relat
     padding: 6px 12px;
     margin: 0px 16px;
     width: 50%;
+}
+
+/* OTHER */
+.btn.fse-logout-button{
+    color: white;
+    background-color: #1da1f2;
+    padding: 6px 12px;
+    margin: 0px 16px;
+    width: 25%;
 }

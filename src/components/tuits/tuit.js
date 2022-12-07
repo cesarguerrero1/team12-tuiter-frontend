@@ -4,7 +4,7 @@ import TuitImage from "./tuit-image";
 import TuitVideo from "./tuit-video";
 
 const Tuit = ({ tuit, deleteTuit }) => {
-  return (!tuit.isBlocked &&
+  return (!tuit.isBlocked && tuit.postedBy !== null && !tuit.postedBy.isBlocked &&
     <div className="ttr-tuit rounded-0 list-group-item ">
       <li className="d-flex">
         <div className="pe-2">

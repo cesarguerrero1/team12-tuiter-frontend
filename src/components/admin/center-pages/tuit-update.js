@@ -52,7 +52,7 @@ function TuitUpdate() {
                     </div>
                     <div className="m-3">
                         <label for="editPostedBy" className="form-label text-start">Posted By (Read Only)</label>
-                        <input type="text" className="form-control" id="editPostedBy" value={tuitToEdit.postedBy.username} readOnly />
+                        <input type="text" className="form-control" id="editPostedBy" value={tuitToEdit.postedBy !== null ? tuitToEdit.postedBy.username : "NULL"} readOnly />
                     </div>
                     <div className="m-3">
                         <label for="editPostedOn" className="form-label">Post Date (Read Only)</label>
