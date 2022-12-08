@@ -40,7 +40,7 @@ function HomePage({hideModal, clickOutsideModal}){
         dispatch(findAllUsersThunk());
         dispatch(findTuitsThunk())
 
-    }, [navigate, dispatch])
+    }, [navigate, dispatch, currentUser, isAdmin])
 
     return(
         <div className="col-9 col-lg-6 col-xl-7">
