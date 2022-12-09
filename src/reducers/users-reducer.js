@@ -63,7 +63,7 @@ const userSlice = createSlice({
          * accordingly
          * @param {Object} state Plain JavaScript Object that contains the state we have defined for our application
          * @param {Object} action Plain Javascript Object that possibly contains data collected after a given action occurs
-         * @returns 
+         * @returns void
          */
         [loginThunk.fulfilled]: (state, action) => {
             state.currentUser = action.payload
@@ -180,7 +180,7 @@ const userSlice = createSlice({
          * If the attempt to delete the user fails, then don't do anything
          * @param {Object} state Plain JavaScript Object that contains the state we have defined for our application
          * @param {Object} action Plain Javascript Object that possibly contains data collected after a given action occurs
-         * @returns 
+         * @returns void
          */
         [deleteUserThunk.rejected]: (state, action) => {
             return;
