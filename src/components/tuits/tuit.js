@@ -7,12 +7,14 @@ const Tuit = ({ tuit, deleteTuit }) => {
 
   //We updated this to now look to see if a tuit is blocked or if the user who posted it is blocked
   return (
+      tuit.postedBy &&
       <div className="ttr-tuit rounded-0 list-group-item ">
-          {tuit.isPostedBy!== null && (tuit.isBlocked || tuit.postedBy.isBlocked) && 
+          {tuit.postedBy!== null && (tuit.isBlocked || tuit.postedBy.isBlocked) && 
           <div className="text-center text-danger">
               <h6>This Tuit and/or the original user who posted this Tuit have been blocked. The content will not be displayed!</h6>
-          </div>}
-          {tuit.isPostedBy !== null && !tuit.isBlocked && !tuit.postedBy.isBlocked  && 
+          </div>
+          }
+          {tuit.postedBy !== null && !tuit.isBlocked && !tuit.postedBy.isBlocked  && 
           <div>
               <li className="d-flex">
                   <div className="pe-2">

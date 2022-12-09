@@ -10,7 +10,7 @@ Team 12 - CS5500 Final
  */
 
 import {createSlice} from "@reduxjs/toolkit"
-import { isLoggedInThunk, findAllUsersThunk, registerThunk, loginThunk, logoutThunk, deleteUserThunk, updateUserThunk } from "../services/users-thunk.js";
+import { isLoggedInThunk, findAllUsersThunk, registerThunk, loginThunk, logoutThunk, deleteUserThunk, updateUserThunk, blockUserThunk } from "../services/users-thunk.js";
 
 //Initial state of our system
 //We want there to be no collection of users, no logged in user (therefore no admin either), zero for all of our counts,
@@ -218,7 +218,42 @@ const userSlice = createSlice({
          */
         [updateUserThunk.rejected]: (state, action) => {
             return
+        },
+
+        /**
+         * Attempt to update the blocked status of the user. If the block update to the server is successful we again can just alter our application state instead of pinging the server
+         * @param {Object} state Plain JavaScript Object that contains the state we have defined for our application
+         * @param {Object} action Plain Javascript Object that possibly contains data collected after a given action occurs
+         * @returns void
+         */
+        [blockUserThunk.fulfilled]: (state, action) => {
+            //Recall that we want to look for the index and then update that index
+            const index = state.allUsers.findIndex((user) => {
+                return user._id === action.payload._uid
+            })
+
+            state.allUsers[index] = action.payload
+
+            let blockedCount = 0;
+            state.allUsers.forEach((user) => {
+                if(user.isBlocked === true){
+                    blockedCount++;
+                }
+            })
+            state.blockedUsersCount = blockedCount;
+
+            return
+        },
+        /**
+         * If the call to the server fails for updating the blocking of a user, then ignore it
+         * @param {Object} state Plain JavaScript Object that contains the state we have defined for our application
+         * @param {Object} action Plain Javascript Object that possibly contains data collected after a given action occurs
+         * @returns void
+         */
+        [blockUserThunk.rejected]: (state, action) => {
+            return
         }
+
     }
 })
 

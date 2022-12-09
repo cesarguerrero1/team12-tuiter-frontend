@@ -6,6 +6,7 @@ Team 12 - Final Project
 File: Base Routing file for all of the admin pages
 */
 
+//React and Redux
 import React, {useEffect} from "react";
 import {useSelector} from "react-redux";
 import { Routes, Route } from "react-router-dom";
@@ -33,6 +34,7 @@ function AdminRouter() {
     //We need access our store and pass information along!
     const {currentUser} = useSelector((state) => state.users);
 
+    //We are using modals to handle popup windows for creating a user or a tuit!
     function showModal(event) {
         if (event.target === userModalButton) {
             userModal.classList.add('d-block');
@@ -41,6 +43,7 @@ function AdminRouter() {
         }
     }
 
+    //We need to get our modal containers so we can close them via onClick actions
     function hideModal(event) {
         //Recall that the close button is (3) steps away from overall modal container that we need to hide
         let parentContainer = event.currentTarget.parentNode.parentNode.parentNode.parentNode;
@@ -51,6 +54,7 @@ function AdminRouter() {
         }
     }
 
+    //We want to implement advanced functionality of clicking off a modal closes it
     function clickOutsideModal(event) {
         if (event.target !== event.currentTarget.children[0]) {
             if (event.target === userModal) {

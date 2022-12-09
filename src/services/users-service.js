@@ -10,3 +10,16 @@ export const createUser = (user) => axios.post(USERS_API, user).then(response =>
 export const updateUser = (user) => axios.put(`${USERS_API}/${user._id}`, user).then(response => response.data);
 
 export const deleteUser = (uid) => axios.delete(`${USERS_API}/${uid}`).then(response => response.data);
+
+
+export const blockUser = async (user) => {
+    if(user.isBlocked === true){
+        //We are trying to block the user!
+        const response = await axios.put(`${USERS_API}/${user._id}/block`, user);
+        return response.data
+    }else{
+        //We are trying to unblock the user!
+        const response = await axios.put(`${USERS_API}/${user._id}/unblock`, user);
+        return response.data
+    }
+}

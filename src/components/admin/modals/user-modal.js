@@ -11,21 +11,32 @@ import { useDispatch } from "react-redux";
 //Import Services
 import {registerThunk } from "../../../services/users-thunk";
 
+/**
+ * We decided to handle creating a User through a modal When the admin clicks on the 'Add User' button this JSX element will pop up on the window. If at any point
+ * the click off the modal or click on the X button, it will hide the modal
+ * @param {Object} parameters This is the syntax for React. We are passing in a 'hideModal' function that alters the display value of the modal. We are also passing in the
+ * clickOutsideModal function which is just a fancier way of hiding the modal as well. 
+ * @returns - JSX Element
+ */
 function UserModal({ hideModal, clickOutsideModal }) {
 
     const dispatch = useDispatch();
 
+    //Our create user form needs to keep the state of everything so we can then send that form on submit
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [email, setEmail] = useState('');
     const [accountType, setAccountType] = useState('USER');
     const [maritalStatus, setMaritalStatus] = useState('SINGLE');
 
+    //When we click on "Create User" we need to send all of the data that was inputted. Noitce that we included some error
+    //correcting to ensure the admin inputs all of the necessary information.
     function createUserClickHandler() {
         if(username === "" || password === "" || email === ""){
             alert("Username, password, and email must all contain valid values");
             return
         }
+        //Attempt to call our THUNK
         dispatch(registerThunk({
             username,
             password,
@@ -34,6 +45,7 @@ function UserModal({ hideModal, clickOutsideModal }) {
             maritalStatus
         }))
 
+        //When we click submit make this modal go away and then reset the state variables
         document.getElementById('userModal').classList.remove('d-block');
         setUsername('');
         setPassword('');

@@ -71,3 +71,12 @@ export const updateUserThunk = createAsyncThunk('users/updateUser', async(user) 
     await usersService.deleteUser(uid);
     return uid;
 })
+
+/**
+ * This function will attempt to perform a block event (block/unblock) on a given user
+ * @returns - Either a 403 (FORBIDDEN) or 200 (SUCCESS) at which point we can then update our application state
+ */
+export const blockUserThunk = createAsyncThunk('users/blockUser', async(user) => {
+    await usersService.blockUser(user);
+    return user;
+})

@@ -22,6 +22,13 @@ import TuitUpdate from "./tuit-update.js";
 import {findAllUsersThunk} from "../../../services/users-thunk.js";
 import {findTuitsThunk} from "../../../services/tuits-thunk.js";
 
+/**
+ * This component is used to handle the routing when the user is on the home page. The center content should change based on actions on the navbar and this allows
+ * for that dynamic change to happen
+ * @param {Object} parameters This is the syntax for React. We are passing in a 'hideModal' function that alters the display value of the modal. We are also passing in the
+ * clickOutsideModal function which is just a fancier way of hiding the modal as well. These functions are just being passed to the modal components
+ * @returns - JSX Element
+ */
 function HomePage({hideModal, clickOutsideModal}){
     
     const { currentUser, isAdmin} = useSelector((state) => state.users);
@@ -29,9 +36,9 @@ function HomePage({hideModal, clickOutsideModal}){
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
-    
+    //When the page fully loads, we need to check if the currentUser is logged in and is an admin. If not,
+    //immediately redirect them to the login page
     useEffect(() => {
-        //You should never be allowed to see these pages if you are not logged in AND not an admin
         if(currentUser === null || isAdmin === false){
             navigate("/admin");
         }
