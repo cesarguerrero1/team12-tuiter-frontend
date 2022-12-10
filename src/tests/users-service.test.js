@@ -1,7 +1,8 @@
 import {
-  createUser,
-  deleteUsersByUsername, findAllUsers,
-  findUserById
+  createUser, 
+  blockUser,
+  updateUser,
+  deleteUser
 } from "../services/users-service";
 
 describe('createUser', () => {
@@ -12,17 +13,8 @@ describe('createUser', () => {
     email: 'ellenripley@aliens.com'
   };
 
-  // setup test before running test
-  beforeAll(() => {
-    // remove any/all users to make sure we create it in the test
-    return deleteUsersByUsername(ripley.username);
-  })
-
   // clean up after test runs
-  afterAll(() => {
-    // remove any data we created
-    return deleteUsersByUsername(ripley.username);
-  })
+  // Skipped mocking delete users as we currently support deleting users only by ID 
 
   test('can insert new users with REST API', async () => {
     // insert new user in the database
@@ -32,78 +24,100 @@ describe('createUser', () => {
     expect(newUser.username).toEqual(ripley.username);
     expect(newUser.password).toEqual(ripley.password);
     expect(newUser.email).toEqual(ripley.email);
+    expect(newUser.isAdmin).toEqual(false);
   });
 });
 
-describe('deleteUsersByUsername', () => {
+//creates a user as an Admin
+describe('creatAdmin', () => {
 
-  // sample user to delete
+  // sample admin to create
   const sowell = {
     username: 'thommas_sowell',
     password: 'compromise',
-    email: 'compromise@solutions.com'
+    email: 'compromise@solutions.com',
+    isAdmin: true,
   };
 
-  // setup the tests before verification
-  beforeAll(() => {
-    // insert the sample user we then try to remove
-    return createUser(sowell);
-  });
+  test('can insert an admin with REST API', async () => {
+    // insert new user in the database
+    const newUser = await createUser(sowell);
 
-  // clean up after test runs
-  afterAll(() => {
-    // remove any data we created
-    return deleteUsersByUsername(sowell.username);
-  })
-
-  test('can delete users from REST API by username', async () => {
-    // delete a user by their username. Assumes user already exists
-    const status = await deleteUsersByUsername(sowell.username);
-
-    // verify we deleted at least one user by their username
-    expect(status.deletedCount).toBeGreaterThanOrEqual(1);
+    // verify inserted user's properties match parameter user
+    expect(newUser.username).toEqual(sowell.username);
+    expect(newUser.password).toEqual(sowell.password);
+    expect(newUser.email).toEqual(sowell.email);
+    expect(newUser.isAdmin).toEqual(true);
   });
 });
 
-describe('findUserById',  () => {
-  // sample user we want to retrieve
+describe('blockUser',  () => {
+  // sample user the admin wants to block
   const adam = {
     username: 'adam_smith',
     password: 'not0sum',
-    email: 'wealth@nations.com'
+    email: 'wealth@nations.com',
+    isBlocked: false
   };
 
-  // setup before running test
-  beforeAll(() => {
-    // clean up before the test making sure the user doesn't already exist
-    return deleteUsersByUsername(adam.username)
-  });
-
-  // clean up after ourselves
-  afterAll(() => {
-    // remove any data we inserted
-    return deleteUsersByUsername(adam.username);
-  });
-
-  test('can retrieve user from REST API by primary key', async () => {
+  test('admin blocks a user via REST API', async () => {
     // insert the user in the database
     const newUser = await createUser(adam);
 
-    // verify new user matches the parameter user
-    expect(newUser.username).toEqual(adam.username);
-    expect(newUser.password).toEqual(adam.password);
-    expect(newUser.email).toEqual(adam.email);
+    //verify user is intially unblocked
+    expect(newUser.isBlocked).toEqual(false);
+    newUser.isBlocked = true;
+    //verify the user is now updated with the blocked status
+    const status = await blockUser(newUser);
+    expect(newUser.isBlocked).toEqual(true);
 
-    // retrieve the user from the database by its primary key
-    const existingUser = await findUserById(newUser._id);
-
-    // verify retrieved user matches parameter user
-    expect(existingUser.username).toEqual(adam.username);
-    expect(existingUser.password).toEqual(adam.password);
-    expect(existingUser.email).toEqual(adam.email);
   });
 });
 
+describe('updateUser',  () => {
+  // sample user the admin wants to block
+  const adam = {
+    username: 'adam_smith',
+    password: 'not0sum',
+    email: 'wealth@nations.com',
+    isBlocked: false
+  };
+
+  test('admin updates a user via REST API', async () => {
+    // insert the user in the database
+    const newUser = await createUser(adam);
+
+    //verify user's intial name
+    expect(newUser.isBlocked).toEqual("adam_smith");
+    newUser.username = 'john_smith';
+    //verify the user's name is now updated
+    const status = await updateUser(newUser);
+    expect(newUser.username).toEqual("john_smith");
+
+  });
+});
+
+describe('deleteUser',  () => {
+  // sample user the admin wants to block
+  const adam = {
+    username: 'adam_smith',
+    password: 'not0sum',
+    email: 'wealth@nations.com',
+    isBlocked: false
+  };
+
+  test('admin updates a user via REST API', async () => {
+    // insert the user in the database
+    const newUser = await createUser(adam);
+
+    //verify user's  existance with his username
+    expect(newUser.username).toEqual("adam_smith");
+    //verify the user to be deleted
+    const status = await deleteUser(newUser);
+    expect(status.deletedCount).toEqual(1);
+
+  });
+});
 
 describe('findAllUsers',  () => {
 
@@ -152,3 +166,4 @@ describe('findAllUsers',  () => {
     });
   });
 });
+
