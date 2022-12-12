@@ -4,6 +4,11 @@ Team 12 - CS5500 Final
 12/4/22
 */
 
+/**
+ * @file The calls we make to the server are asyncronous and so we need to use Thunks
+ * in order to appropriately wait for a response from the server and then act on that response.
+ * This file in particular handles all of the server calls related to users
+ */
 import {createAsyncThunk} from "@reduxjs/toolkit"
 
 //Import our services to call the server

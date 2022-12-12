@@ -4,6 +4,10 @@ Team 12 - CS5500 Final
 12/11/22
 */
 
+/**
+ * @file This file represents all of the axios calls to our server to specific HTTP endpoints for our admin. Our admin is performing
+ * operations that we would not want anyone else to accidentally be able to use so we are segregating as muchc as we can
+ */
 import axios from "axios";
 
 const BASE_URL = process.env.REACT_APP_API_BASE;
@@ -32,7 +36,7 @@ export const updateUser = (user) => axios.put(`${ADMIN_API}/users/${user._id}`, 
 /**
  * Axios DELETE call  to remove a user
  * @param {String} uid - The unique id of the user we wish to delete from the database
- * @returns 
+ * @returns - Either a 403 error or a 200 success
  */
 export const deleteUser = (uid) => axios.delete(`${ADMIN_API}/users/${uid}`).then(response => response.data);
 

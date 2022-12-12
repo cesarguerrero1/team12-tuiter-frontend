@@ -4,6 +4,11 @@ Team 12 - CS5500 Final
 12/4/22
 */
 
+/**
+ * @file As part of the deliverable for this class we were tasked with ensuring that session-management
+ * was indeed working. This file handles all the server calls to login, logout, and check if someone is already
+ * logged in or not.
+ */
 import axios from "axios";
 const BASE_URL = process.env.REACT_APP_API_BASE;
 const AUTH_API = `${BASE_URL}/api/auth`;
