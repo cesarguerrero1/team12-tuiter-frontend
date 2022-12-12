@@ -5,13 +5,24 @@ CS55000 - Fall 2022
 Team 12 - Final Project
 */
 
+//React
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+
+//Redux
 import { useDispatch, useSelector } from "react-redux";
+
+//Reducers
 import { loginThunk } from "../../services/users-thunk";
 
+/**
+ * The LoginPage is the gatekepeer for our portal. If a user attempts to access any other page in the admin portal and they are not authorized,
+ * they will be redirected to this page!
+ * @returns JSX Element for the Admin Login UI
+ */
 function LoginPage() {
 
+    //Redux State
     const { currentUser, isAdmin, loginAttemptFailed } = useSelector((state) => state.users);
 
     const [username, setUsername] = useState('');
@@ -32,7 +43,7 @@ function LoginPage() {
         }
     }
 
-    //If the user is already logged in and an admin, don't show this
+    //If the user is already logged in and an admin, don't let them login again!
     useEffect(() => {
         if(currentUser !== null && isAdmin === true){
             navigate('/admin/home');

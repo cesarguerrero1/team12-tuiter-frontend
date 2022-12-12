@@ -9,7 +9,11 @@ import React from "react";
 import { useSelector} from "react-redux";
 import { useNavigate } from "react-router"
 
-
+/**
+ * This component handles rendering a table of all the tuits created in our application. The admin can interact with all of them
+ * and flag/block/delete them as they see fit.
+ * @returns JSX Element
+ */
 function TuitTable() {
 
     const { allTuits } = useSelector((state) => state.tuits);
@@ -22,7 +26,7 @@ function TuitTable() {
      * @param {Tuit} tuit - The tuit we wish to edit!
      */
     function tuitRowClickHandler(tuit) {
-        //Go to the page with this users id! /users/:uid
+        //Go to the page with this tuits id! 
         navigate(`/admin/home/tuits/edit/${tuit._id}`, {state:tuit});
     }
 

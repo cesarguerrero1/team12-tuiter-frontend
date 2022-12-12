@@ -12,7 +12,6 @@ To take advantage of Redux, we will need to use and implement the following:
 
 //React
 import React, {useEffect, useState} from "react";
-import {useParams} from "react-router-dom";
 import { useSelector, useDispatch} from "react-redux";
 
 //Other
@@ -24,12 +23,13 @@ import {createTuitThunk, findTuitsThunk} from "../../services/tuits-thunk.js";
 
 
 const Home = () => {
-  const {uid} = useParams();
+  //Here we are implementing the redux state for getting the uers and tuits
   const {currentUser} = useSelector((state) => state.users);
   const { allTuits } = useSelector((state) => state.tuits);
-  const dispatch = useDispatch();
   const [tuit, setTuit] = useState('');
   
+  const dispatch = useDispatch();
+
   function createTuit(){
     dispatch(createTuitThunk({tuit, postedBy: currentUser._id}))
   }
@@ -41,6 +41,7 @@ const Home = () => {
     dispatch(findTuitsThunk())
   }, [dispatch]);
 
+  //Notice we only want to allow someone to post a tuit if they are logged in!
   return(
     <div className="ttr-home">
       <div className="border border-bottom-0">
