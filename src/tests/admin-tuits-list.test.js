@@ -3,7 +3,7 @@ import '@testing-library/jest-dom';
 import {screen, render} from "@testing-library/react";
 import {HashRouter} from "react-router-dom";
 import {updateTuit, findAllTuits} from "../services/admin-service";
-import {createTuitByUser, deleteTuit} from "../services/tuits-service";
+import {createTuit, deleteTuit} from "../services/tuits-service";
 import {createUser, deleteUser} from "../services/users-service";
 import axios from "axios";
 
@@ -23,7 +23,7 @@ const MOCKED_TUITS = [
 
 test('tuit list renders async', async () => {
     const testUser = await createUser(MOCKED_USERS[0]);
-    const createdTuit = await createTuitByUser(testUser._id, {tuit: "bye"});
+    const createdTuit = await createTuit(testUser._id, {tuit: "bye"});
     const tuits = await findAllTuits();
     render(
         <HashRouter>
@@ -39,7 +39,7 @@ test('tuit list renders async', async () => {
 
 test('tuit list updates async', async () => {
     const testUser = await createUser(MOCKED_USERS[0]);
-    const createdTuit = await createTuitByUser(testUser._id, {tuit: "bye"});
+    const createdTuit = await createTuit(testUser._id, {tuit: "bye"});
     const tuits = await findAllTuits();
     render(
         <HashRouter>
@@ -49,6 +49,7 @@ test('tuit list updates async', async () => {
     expect(linkElement).toBeInTheDocument();
   
     const updatedTuit = await updateTuit(createdTuit._id, {tuit: "bye boys"})
+    console.log(updatedTuit);
     const tuits2 = await findAllTuits();
     render(
         <HashRouter>
@@ -68,7 +69,6 @@ test('tuit list renders mocked', async () => {
       Promise.resolve({ data: {tuits: MOCKED_TUITS  } }));
     const response = await findAllTuits();
     const tuits = response.tuits;
-    console.log("HERE ", tuits)
     render(
         <HashRouter>
             <Tuits tuits={tuits} />
