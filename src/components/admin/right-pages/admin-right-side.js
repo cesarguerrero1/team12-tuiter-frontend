@@ -11,6 +11,10 @@ import { Routes, Route } from "react-router-dom";
 
 import AdminStats from "./index.js"
 
+/**
+ * Router for future functionality of our admin portal
+ * @returns JSX Router for the right side of our admin portal
+ */
 function AdminRightSide(){
     return(
         <Routes>

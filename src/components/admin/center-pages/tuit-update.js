@@ -22,19 +22,24 @@ function TuitUpdate() {
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
+    //We can immediately set this as the state we are using is passing immedaitely. It is not asynchronous
     const [isBlocked, setIsBlocked] = useState(tuitToEdit.isBlocked);
     const [isFlagged, setIsFlagged] = useState(tuitToEdit.isFlagged);
 
+    //When you click on update tuit we need to call our Thunk with the appropriate changes
     function updateClickHandler(tuitToEdit) {
+        //THe admin should only be allowed to block or flag a Tuit via update. The admin has no power to alter content
         dispatch(updateTuitThunk({
             ...tuitToEdit,
             isBlocked,
             isFlagged
         }))
+        //Async doesn't happen instantaneously so putting a small delay
         setTimeout(()=> navigate("../tuits"), 1500);
         return
     }
 
+    //Handle the action of deleting a Tuit
     function deleteClickHandler(tuitToEdit) {
         dispatch(deleteTuitThunk(tuitToEdit._id))
         setTimeout(()=> navigate("../tuits"), 1500);
