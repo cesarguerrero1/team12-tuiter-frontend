@@ -7,6 +7,7 @@ Team 12 - CS5500 Final
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
 //Calling our services
+import * as adminService from "./admin-service.js"
 import * as tuitsService from "./tuits-service.js"
 
 /**
@@ -14,8 +15,16 @@ import * as tuitsService from "./tuits-service.js"
  * use those Tuits to update our application
  * @returns - An array of all the Tuits or an empty array
  */
-export const findTuitsThunk = createAsyncThunk('tuits/findTuits', async() => {
-    return await tuitsService.findAllTuits();
+export const findTuitsThunk = createAsyncThunk('tuits/findTuits', async(isAdmin) => {
+    //We are using the same thunk but depending on the user type we want to do different things
+    if(isAdmin){
+        //An admin wants all the tuits
+        return await adminService.findAllTuits();
+    }else{
+        //A normal user wants all the tuits
+        return await tuitsService.findAllTuits();
+    }
+    
 })
 
 /**
@@ -24,7 +33,7 @@ export const findTuitsThunk = createAsyncThunk('tuits/findTuits', async() => {
  * @returns - Either an empty object or the newly created Tuit
  */
  export const createTuitThunk = createAsyncThunk('tuits/createTuit', async(newTuit) => {
-    const createdTuit = await tuitsService.createTuit(newTuit.postedBy, newTuit);
+    const createdTuit = await tuitsService.createTuitByUser(newTuit.postedBy, newTuit);
     return createdTuit;
 })
 
@@ -34,7 +43,7 @@ export const findTuitsThunk = createAsyncThunk('tuits/findTuits', async() => {
  * @returns - We are returning the newly updated Tuit Object
  */
 export const updateTuitThunk = createAsyncThunk('tuits/updateTuit', async(updatedTuit) => {
-    const returnedTuit = await tuitsService.updateTuit(updatedTuit._id, updatedTuit);
+    const returnedTuit = await adminService.updateTuit(updatedTuit._id, updatedTuit);
     return returnedTuit;
 })
 

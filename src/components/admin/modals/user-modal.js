@@ -9,7 +9,7 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 
 //Import Services
-import {registerThunk } from "../../../services/users-thunk";
+import {registerThunk} from "../../../services/users-thunk";
 
 /**
  * We decided to handle creating a User through a modal When the admin clicks on the 'Add User' button this JSX element will pop up on the window. If at any point

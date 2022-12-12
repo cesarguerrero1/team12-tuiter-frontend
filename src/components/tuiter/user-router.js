@@ -38,7 +38,7 @@ function UserRouter() {
                 </div>
                 <div className="col-10 col-lg-7 col-xl-6">
                     <Routes>
-                        <Route path="/" element={<Home />} />
+                        <Route index element={<Home />} />
                         <Route path="/login" element={<Login />} />
                         <Route path="/tuiter" element={<Home />} />
                         <Route path="/tuiter/:uid" element={<Home />} />

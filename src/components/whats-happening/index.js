@@ -32,4 +32,5 @@ function WhatsHappening() {
     </div>
   );
 }
+
 export default WhatsHappening;
