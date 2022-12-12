@@ -11,7 +11,12 @@ import {useDispatch} from "react-redux"
 
 import { logoutThunk } from "../../../services/users-thunk.js";
 
-
+/**
+ * The Admin Navbar allows the admin to change the center content to cycle through different pages with ease
+ * @param {Object} parameters This is the syntax for React. We are passing in the currentUser that is loggedin to display on the top of the navbar. We are also passing
+ * the function to allow our navbar buttons to open the modals we created
+ * @returns - JSX Element
+ */
 function AdminNavbar({currentUser, showModal}){  
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -27,7 +32,7 @@ function AdminNavbar({currentUser, showModal}){
                 <div>
                     <div className="fse-navbar-links">
                         <h6>Current Admin: {currentUser && currentUser.username}</h6>
-                        <h6 className="text-danger text-uppercase text-decoration-underline" onClick={logoutClickHandler}>Logout</h6>
+                        <h6 className="text-danger text-uppercase text-decoration-underline" onClick={logoutClickHandler}>( Logout )</h6>
                         <i className="fab fa-twitter fse-twitter-color fa-"></i>
                     </div>
                 </div>

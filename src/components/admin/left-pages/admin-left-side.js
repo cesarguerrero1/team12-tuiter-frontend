@@ -12,7 +12,10 @@ import { Routes, Route } from "react-router-dom";
 //Components
 import AdminNavbar from "./index.js";
 
-
+/**
+ * Router for future functionality of our admin portal
+ * @returns JSX Router for the left ide of our admin portal
+ */
 function AdminLeftSide({currentUser, showModal}){
     return(
         <Routes>

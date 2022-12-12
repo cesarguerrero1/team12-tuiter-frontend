@@ -6,6 +6,12 @@ CS5500 - After meeting with the professor we are going back and retroactively ju
 2. Handle the implementation of Redux (Reducers, Store, Provider)
 */
 
+/**
+ * @file This is the main entry point into our entire application. Our implementation of this application splits up the
+ * admin portal and the user portal. Additionally you can see that we implemented redux. We declare it here so that our entire
+ * application (user and admin) have access to the same state data from the server
+ */
+
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
@@ -23,6 +29,7 @@ import { Provider } from "react-redux"
 //CSS
 import "./index.css"
 
+//Redux Store
 const store = configureStore({
     reducer: {
         users: usersReducer,

@@ -23,6 +23,11 @@ import Lists from "../lists";
 import More from "../more";
 import Login from "../profile/login";
 
+/**
+ * This function is for handling the user-portal. Our main index file will call both this function and the admin-side function to discern which portal
+ * should be displayed
+ * @returns JSX element for the user-portal side of things
+ */
 function UserRouter() {
 
     return (

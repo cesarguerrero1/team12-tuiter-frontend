@@ -6,43 +6,70 @@ Team 12 - Final Project
 */
 
 import React, {useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useLocation} from "react-router";
 
 //Import services
-import { deleteUserThunk, updateUserThunk } from "../../../services/users-thunk.js";
+import { deleteUserThunk, updateUserThunk, blockUserThunk } from "../../../services/users-thunk.js";
 
 /**
  * When this function is called, we need to bring up a screen wherein the admin can see all of the data associated with the user and edit/block/delete them
  * @param {user} user - The user we are going to display information for
  */
 function UserUpdate() {
+    //State management variables
+    const { currentUser } = useSelector((state) => state.users);
     const userToEdit = useLocation().state;
 
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
+    //We are passing in a local state so setting defaults can happen immediately!
     const [username, setUsername] = useState(userToEdit.username);
     const [email, setEmail] = useState(userToEdit.email);
     const [accountType, setAccountType] = useState(userToEdit.accountType);
     const [maritalStatus, setMaritalStatus] = useState(userToEdit.maritalStatus);
-    const [isBlocked, setIsBlocked] = useState(userToEdit.isBlocked);
     const [isAdmin, setIsAdmin] = useState(userToEdit.isAdmin)
 
+    //Block the User
+    function blockClickHandler(userToEdit){
+        if(userToEdit.isBlocked === true){
+            //Unblock
+            dispatch(blockUserThunk({
+                ...userToEdit,
+                isBlocked: false,
+                blockedBy: ''
+            }))
+            setTimeout(()=> navigate("../users"), 1500);
+            return
+        }else{
+            //Block
+            dispatch(blockUserThunk({
+                ...userToEdit,
+                isBlocked: true,
+                blockedBy: currentUser.username
+            }))
+            setTimeout(()=> navigate("../users"), 1500);
+            return
+        }
+    }
+
+    //Update the User
     function updateClickHandler(userToEdit) {
+        //Notice that we do not include BLOCK as that is a seperate button
         dispatch(updateUserThunk({
             ...userToEdit,
             username,
             email,
             accountType,
             maritalStatus,
-            isBlocked,
             isAdmin
         }))
         setTimeout(()=> navigate("../users"), 1500);
         return
     }
 
+    //Delete the User
     function deleteClickHandler(userToEdit) {
         dispatch(deleteUserThunk(userToEdit._id));
         setTimeout(()=> navigate("../users"), 1500);
@@ -83,19 +110,26 @@ function UserUpdate() {
                     </div>
                     <div className="m-3">
                         <span className="me-3">
-                            <input type="checkbox" className="form-check-input me-1" id="editBlocked" onChange={() => { setIsBlocked(!isBlocked) }} checked={isBlocked === true ? true : false} />
+                            <input type="checkbox" className="form-check-input me-1" id="editBlocked" checked={userToEdit.isBlocked === true ? true : false} readOnly />
                             <label for="editBlocked" className="form-check-label" >Blocked?</label>
                         </span>
+                        {userToEdit.isBlocked === true && 
                         <span className="me-3">
+                            Blocked By: Admin - {userToEdit.blockedBy}
+                        </span>
+                        }
+                    </div>
+                    <div className="m-3">
                             <input type="checkbox" className="form-check-input me-1" id="editAdmin" onChange={() => { setIsAdmin(!isAdmin) }} checked={isAdmin === true ? true : false} />
                             <label for="editAdmin" className="form-check-label">Admin Permissions?</label>
-                        </span>
                     </div>
                     <div className="m-3">
                         <label for="editJoinDate" className="form-label">Joined Date (Read Only)</label>
                         <input type="date" className="form-control" id="editJoinDate" value={userToEdit.joinedDate.slice(0, 10)} readOnly />
                     </div>
                     <div className="text-center">
+                        {userToEdit.isBlocked === true && <button className="btn fse-delete-button" onClick={() => blockClickHandler(userToEdit)}>UNBLOCK</button>}
+                        {userToEdit.isBlocked === false && <button className="btn fse-delete-button" onClick={() => blockClickHandler(userToEdit)}>BLOCK</button>}
                         <button className="btn fse-update-button" onClick={() => updateClickHandler(userToEdit)}>UPDATE</button>
                         <button className="btn fse-delete-button" onClick={() => deleteClickHandler(userToEdit)}>DELETE</button>
                     </div>

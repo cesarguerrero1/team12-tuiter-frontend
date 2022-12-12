@@ -8,7 +8,12 @@ Team 12 - Final Project
 import React from "react";
 import {useSelector} from "react-redux";
 
+/**
+ * This function creates the HTML for showing a nice UI that contains the stats for our application
+ * @returns JSX Element for handling the stats for our admin to see regarding the users and tuits
+ */
 function AdminStats(){
+    //We need to get our counts from the state management system
     const {totalUsersCount, blockedUsersCount} = useSelector((state) => state.users);
     const {totalTuitsCount, blockedTuitsCount, flaggedTuitsCount} = useSelector((state) => state.tuits);
 

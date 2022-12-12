@@ -9,7 +9,11 @@ import React from "react";
 import { useSelector} from "react-redux";
 import { useNavigate } from "react-router"
 
-
+/**
+ * This component handles rendering a table of all the Users created in our application. The admin can interact with all of the
+ * users and update/block/delete them as they see fit
+ * @returns JSX Element
+ */
 function UserTable() {
 
     const {allUsers} = useSelector((state) => state.users);
@@ -17,11 +21,12 @@ function UserTable() {
     const navigate = useNavigate();
 
     /**
-     * When you click on a table row, we are assuming you want to edit that user, therefore this will navigate you to a new screen where you will see all of the data associated with this user! 
+     * When you click on a table row, we are assuming you want to edit that user, therefore this
+     * will navigate you to a new screen where you will see all of the data associated with this user! 
      * @param {User} user - The user we wish to edit!
      */
     function userRowClickHandler(user) {
-        //Go to the page with this users id! /users/:uid
+        //Go to the page with this users id!
         navigate(`/admin/home/users/edit/${user._id}`, {state:user});
     }
 
