@@ -4,6 +4,11 @@ Team 12 - CS5500 Final
 12/4/22
 */
 
+/**
+ * @file As part of the deliverable for this class we were tasked with ensuring that session-management
+ * was indeed working. This file handles all the server calls to login, logout, and check if someone is already
+ * logged in or not.
+ */
 import axios from "axios";
 const BASE_URL = process.env.REACT_APP_API_BASE;
 const AUTH_API = `${BASE_URL}/api/auth`;
@@ -17,7 +22,7 @@ const api = axios.create({
 
 /**
  * Attempt to login the user
- * @param {object} credentials - An object containing the username and password
+ * @param {Object} credentials - An object containing the username and password
  * @returns - Returns either a user object or a 403(FORBIDDEN) response status
  */
 async function login(credentials){
@@ -27,7 +32,7 @@ async function login(credentials){
 
 /**
  * Attempt to logout the user
- * @param {user} user - A user object containing their username and password so the system can
+ * @param {User} user - A user object containing their username and password so the system can
  * check if they are logged in and then subsequently log them out and destroy their session
  * @returns Either a Response Status of 200(SUCCESS) or 403(FORBIDDEN)
  */
