@@ -48,7 +48,6 @@ function Tuiter() {
             <CheckUser>
                 <BrowserRouter>
                     <Routes>
-                        <Route index element={<UserRouter />} />
                         <Route path="/*" element={<UserRouter />} />
                         <Route path="/admin/*" element={<AdminRouter />} />
                     </Routes>

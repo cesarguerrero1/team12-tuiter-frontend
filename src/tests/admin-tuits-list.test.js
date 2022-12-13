@@ -3,8 +3,8 @@ import '@testing-library/jest-dom';
 import {screen, render} from "@testing-library/react";
 import {HashRouter} from "react-router-dom";
 import {updateTuit, findAllTuits} from "../services/admin-service";
-import {createTuit, deleteTuit} from "../services/tuits-service";
-import {createUser, deleteUser} from "../services/users-service";
+import {createTuitByUser, deleteTuit} from "../services/tuits-service";
+import {createUser, deleteUser} from "../services/admin-service";
 import axios from "axios";
 
 const MOCKED_USERS = [
@@ -23,11 +23,12 @@ const MOCKED_TUITS = [
 
 test('tuit list renders async', async () => {
     const testUser = await createUser(MOCKED_USERS[0]);
-    const createdTuit = await createTuit(testUser._id, {tuit: "bye"});
+    const createdTuit = await createTuitByUser(testUser._id, {tuit: "bye"});
     const tuits = await findAllTuits();
+    console.log("TUITS ------- ", tuits);
     render(
         <HashRouter>
-            <Tuits tuits={tuits}/>
+            <Tuits tuits={tuits} currentUser={testUser}/>
         </HashRouter>);
     const linkElement = screen.getByText(/bye/i);
     expect(linkElement).toBeInTheDocument();
@@ -35,15 +36,15 @@ test('tuit list renders async', async () => {
     // Cleans up.
     await deleteTuit(createdTuit._id);
     await deleteUser(testUser._id);
-})
+});
 
 test('tuit list updates async', async () => {
     const testUser = await createUser(MOCKED_USERS[0]);
-    const createdTuit = await createTuit(testUser._id, {tuit: "bye"});
+    const createdTuit = await createTuitByUser(testUser._id, {tuit: "bye"});
     const tuits = await findAllTuits();
     render(
         <HashRouter>
-            <Tuits tuits={tuits}/>
+            <Tuits tuits={tuits} currentUser={testUser}/>
         </HashRouter>);
     const linkElement = screen.getByText(/bye/i);
     expect(linkElement).toBeInTheDocument();
@@ -53,7 +54,7 @@ test('tuit list updates async', async () => {
     const tuits2 = await findAllTuits();
     render(
         <HashRouter>
-            <Tuits tuits={tuits2}/>
+            <Tuits tuits={tuits2} currentUser={testUser}/>
         </HashRouter>);
     const linkElement2 = screen.getByText(/bye boys/i);
     expect(linkElement2).toBeInTheDocument();
@@ -71,10 +72,9 @@ test('tuit list renders mocked', async () => {
     const tuits = response.tuits;
     render(
         <HashRouter>
-            <Tuits tuits={tuits} />
+            <Tuits tuits={tuits} currentUser={MOCKED_USERS[0]}/>
         </HashRouter>);
 
     const linkElement = await screen.getByText('sarah_conors tuit');    
     expect(linkElement).toBeInTheDocument();
 });
-

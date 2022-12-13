@@ -4,8 +4,8 @@ import {
 } from "../services/admin-service";
 import {
   createUser, deleteUser
-} from "../services/users-service";
-import {createTuit, deleteTuit} from "../services/tuits-service";
+} from "../services/admin-service";
+import {createTuitByUser, deleteTuit} from "../services/tuits-service";
 
 
 describe('findAllTuits', () => {
@@ -23,7 +23,7 @@ describe('findAllTuits', () => {
       // Assumes createUser has been tested.
       const createdUser = await createUser(testUser);
       testTuitContents.map(async content => {
-          const createdTuit = await createTuit(createdUser._id, {"tuit" : content});
+          const createdTuit = await createTuitByUser(createdUser._id, {"tuit" : content});
 
           // Verifies created tuit matches the parameter tuit.
           expect(createdTuit.tuit).toEqual(content);
@@ -56,7 +56,7 @@ describe('findAllTuits', () => {
     const tuitText = "update api";
     // Assumes createUser has been tested.
     const createdUser = await createUser(testUser);
-    const createdTuit = await createTuit(createdUser._id, {"tuit" : tuitText});
+    const createdTuit = await createTuitByUser(createdUser._id, {"tuit" : tuitText});
 
     // Verifies created tuit matches the parameter tuit.
     expect(createdTuit.tuit).toEqual(tuitText);

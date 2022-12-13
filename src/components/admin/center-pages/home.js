@@ -45,7 +45,7 @@ function HomePage({hideModal, clickOutsideModal}){
 
         //We need to refresh everything as we go - The admin panel ALWAYS needs to be up to date
         dispatch(findAllUsersThunk());
-        dispatch(findTuitsThunk())
+        dispatch(findTuitsThunk(isAdmin))
 
     }, [navigate, dispatch, currentUser, isAdmin])
 
@@ -55,7 +55,7 @@ function HomePage({hideModal, clickOutsideModal}){
                 <Route index element={<UserTable/>}/>
                 <Route path="/users" element={<UserTable/>}/>
                 <Route path="/users/edit/:uid" element = {<UserUpdate/>}/>
-                <Route path="/tuits/" element={<TuitTable/>}/>
+                <Route path="/tuits" element={<TuitTable/>}/>
                 <Route path="/tuits/edit/:tid" element = {<TuitUpdate/>}/>
             </Routes>
             <UserModal hideModal={hideModal} clickOutsideModal={clickOutsideModal}/>
