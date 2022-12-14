@@ -1,70 +1,40 @@
-# Getting Started with Create React App
+## TUIT PROJECT
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+ ### GROUP MEMBERS
+ 1. Cesar Guerrero
+ 2. Nidhi Shah
+ 3. Spatika Himanth
 
-## Available Scripts
+ ### Description
+ Our group is interested in building the admin feature because we believe access control is an important part of a social networking website. Access control can be achieved when few users have rights to edit and delete while most users have view and create rights. Creating an admin tool helps us achieve different roles and responsibilities. It also provides the application the flexibility to make updates to the system without directly interacting with the database. This feature will ensure that posts and users are under surveillance and are restricted to post, comment on anything that hurts the community. It is a stand-alone feature from the existing system. This feature will help us build and understand the complete application system and connect the front-end, back-end, and database components. 
 
-In the project directory, you can run:
+ ### Setting up the project on your local machine
 
-### `npm start`
+ 1) `git clone https://github.com/cesarguerrero1/team12-tuiter-frontend.git`
+ 2) Create a .env file containing the following variables 
+    - ENV, that points to the respective local/production environments and
+    - REACT_APP_API_BASE, that points to the base URL, 'http://localhost:4000' or the URL pointing to the hosted cloud application
+ 3) Run `npm install` to install all the required package dependencies on your machine (Refer to the Notes section for detailed dependencies!)
+ 4) Run `npm install axios@0.24.0` to install axios, a library that helps sending asynchronous HTTP requests to REST endpoints easier and helps perform CRUD operations.  
+ 4) Run `npm i --save @fortawesome/fontawesome-svg-core @fortawesome/free-solid-svg-icons @fortawesome/react-fontawesome` to       install the library supporting font awesome icons.
+ 5) Run 'npm run start' to pull up the application on your local port!
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+ ### Following are some screenshots that show an Admin's interface in the application
 
-### `npm test`
+ ##### Login page
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+ ![Datamodel] (https://user-images.githubusercontent.com/62967999/205994434-82a4517d-3528-4954-a23b-3ee82a03b943.png)
+  
 
-### `npm run build`
+ ##### Home page
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+ ![Datamodel] (https://user-images.githubusercontent.com/62967999/205994407-b9e9ab2c-6715-45f4-983b-1fa49c04bdeb.png)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+ ##### Admin portal that helps add, update, delete, block users and tuits
 
-### `npm run eject`
+ ![Datamodel] (https://user-images.githubusercontent.com/62967999/205994418-6832958a-59c9-4f3b-beb5-50f7e988a573.png)
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
