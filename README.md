@@ -15,9 +15,7 @@
     - ENV, that points to the respective local/production environments and
     - REACT_APP_API_BASE, that points to the base URL, 'http://localhost:4000' or the URL pointing to the hosted cloud application
  3) Run `npm install` to install all the required package dependencies on your machine (Refer to the Notes section for detailed dependencies!)
- 4) Run `npm install axios@0.24.0` to install axios, a library that helps sending asynchronous HTTP requests to REST endpoints easier and helps perform CRUD operations.  
- 4) Run `npm i --save @fortawesome/fontawesome-svg-core @fortawesome/free-solid-svg-icons @fortawesome/react-fontawesome` to       install the library supporting font awesome icons.
- 5) Run 'npm run start' to pull up the application on your local port!
+ 4) Run `npm run build` followed by `npm run start` to pull up the application on your local port!
 
 
  ### Following are some screenshots that show an Admin's interface in the application
