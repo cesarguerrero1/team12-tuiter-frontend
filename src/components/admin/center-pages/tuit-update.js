@@ -10,7 +10,7 @@ import { useDispatch } from "react-redux";
 import { useNavigate, useLocation} from "react-router";
 
 //Thunks!
-import { deleteTuitThunk, updateTuitThunk } from "../../../services/tuits-thunk.js"
+import {updateTuitThunk } from "../../../services/tuits-thunk.js"
 
 /**
  * When this function is called, we need to bring up a screen wherein the admin can see all of the data associated with the tuit and can edit/flag/delete it
@@ -35,13 +35,6 @@ function TuitUpdate() {
             isFlagged
         }))
         //Async doesn't happen instantaneously so putting a small delay
-        setTimeout(()=> navigate("../tuits"), 1500);
-        return
-    }
-
-    //Handle the action of deleting a Tuit
-    function deleteClickHandler(tuitToEdit) {
-        dispatch(deleteTuitThunk(tuitToEdit._id))
         setTimeout(()=> navigate("../tuits"), 1500);
         return
     }
@@ -77,7 +70,6 @@ function TuitUpdate() {
                     </div>
                     <div className="text-center">
                         <button className="btn fse-update-button" onClick={() => {updateClickHandler(tuitToEdit)}}>UPDATE</button>
-                        <button className="btn fse-delete-button" onClick={() => {deleteClickHandler(tuitToEdit)}}>DELETE</button>
                     </div>
                 </div>
             }

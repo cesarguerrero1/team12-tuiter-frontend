@@ -1,7 +1,7 @@
 import React from "react";
 import Tuit from "./tuit";
 
-function Tuits({tuits = [], deleteTuit}) {
+function Tuits({currentUser, tuits = [], deleteTuit}) {
 
     return (
     <div>
@@ -9,7 +9,7 @@ function Tuits({tuits = [], deleteTuit}) {
         {
           tuits.map && tuits.map(tuit => {
             return (
-              <Tuit key={tuit._id} deleteTuit={deleteTuit} tuit={tuit}/>
+              <Tuit key={tuit._id} currentUser={currentUser} deleteTuit={deleteTuit} tuit={tuit}/>
             );
           })
         }

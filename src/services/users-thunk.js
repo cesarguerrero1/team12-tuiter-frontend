@@ -4,11 +4,16 @@ Team 12 - CS5500 Final
 12/4/22
 */
 
+/**
+ * @file The calls we make to the server are asyncronous and so we need to use Thunks
+ * in order to appropriately wait for a response from the server and then act on that response.
+ * This file in particular handles all of the server calls related to users
+ */
 import {createAsyncThunk} from "@reduxjs/toolkit"
 
 //Import our services to call the server
 import * as authService from "./auth-service.js"
-import * as usersService from "./users-service.js"
+import * as adminService from "./admin-service.js"
 
 /**
  * This function allows us to attempt to login and thus inform our client and server that a user is logged in
@@ -43,7 +48,7 @@ export const logoutThunk = createAsyncThunk('users/logout', async(user) => {
  * @returns - Either all of the users currently in our database or a 403(FORBIDDEN) response status
  */
 export const findAllUsersThunk = createAsyncThunk('users/findAllUsers', async() => {
-    return await usersService.findAllUsers();
+    return await adminService.findAllUsers();
 })
 
 /**
@@ -51,7 +56,7 @@ export const findAllUsersThunk = createAsyncThunk('users/findAllUsers', async() 
  * @returns - This will either return a 403(FORBIDDEN) OR a 200(SUCCESS) response status
  */
  export const registerThunk = createAsyncThunk('users/register', async(user) => {
-    return await usersService.createUser(user);
+    return await adminService.createUser(user);
 });
 
 /**
@@ -59,7 +64,7 @@ export const findAllUsersThunk = createAsyncThunk('users/findAllUsers', async() 
  * @returns - Either a 403(FORBIDDEN) or 200(SUCCESS) at which point depending on the status we will update our application state
  */
 export const updateUserThunk = createAsyncThunk('users/updateUser', async(user) => {
-    await usersService.updateUser(user);
+    await adminService.updateUser(user);
     return user;
 })
 
@@ -68,7 +73,7 @@ export const updateUserThunk = createAsyncThunk('users/updateUser', async(user) 
  * @returns - Either a 403(FORBIDDEN) or 200(SUCCESS) at which point depending on the status we will update our application state
  */
  export const deleteUserThunk = createAsyncThunk('users/deleteUser', async(uid) => {
-    await usersService.deleteUser(uid);
+    await adminService.deleteUser(uid);
     return uid;
 })
 
@@ -77,6 +82,6 @@ export const updateUserThunk = createAsyncThunk('users/updateUser', async(user) 
  * @returns - Either a 403 (FORBIDDEN) or 200 (SUCCESS) at which point we can then update our application state
  */
 export const blockUserThunk = createAsyncThunk('users/blockUser', async(user) => {
-    await usersService.blockUser(user);
+    await adminService.blockUser(user);
     return user;
 })
